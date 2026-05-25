@@ -7,6 +7,8 @@
 'Creation Date: May 25, 2026
 'GitHub Repository: https://github.com/Nubbie16/MineSweeper
 
-Public Class MainForm
+Public Class TitleScreen
+
+
 
 End Class
