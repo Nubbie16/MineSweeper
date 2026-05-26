@@ -1,0 +1,14 @@
+﻿'Project Name: MineSweeper
+'Purpose: MineSweeper game that stores high scores(fastest completion)
+'File Name: AvatarSelection.vb
+'Description: This is the form that will allow the player to select an avatar for their profile.
+'             It will display a selection of avatars for the player to choose from and will save
+'             the selected avatar to the player's game session.
+'Programmer: Cody Eckard
+'Creation Date: May 25, 2026
+'GitHub Repository: https://github.com/Nubbie16/MineSweeper
+
+
+Public Class AvatarSelection
+
+End Class
