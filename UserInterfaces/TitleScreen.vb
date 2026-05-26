@@ -9,29 +9,23 @@
 
 Public Class TitleScreen
 
+    Dim difficulty As String
+
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
-        ' Add any initialization after the InitializeComponent() call.
-    End Sub
-
-    Public Sub New(difficulty As String)
-        ' This call is required by the designer.
-        InitializeComponent()
-
-
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
 
     Private Sub newGameBtn_Click(sender As Object, e As EventArgs) Handles newGameBtn.Click
-        Dim avatarSelection As New AvatarSelection
+
+        difficulty = difficultyCBO.SelectedItem.ToString()
+        Dim avatarSelection As New AvatarSelection(difficulty)
         avatarSelection.Show()
         Hide()
-
     End Sub
 
-    Private Sub highScoreTC_SelectedIndexChanged(sender As Object, e As EventArgs) Handles highScoreTC.SelectedIndexChanged
+    ''Display scores based on difficulty selection
 
-    End Sub
 End Class

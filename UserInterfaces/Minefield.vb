@@ -18,17 +18,17 @@ Public Class Minefield
     End Sub
 
 
-    Public Sub New(player As String, avatar As Image, difficulty As String, Optional mineCount As Integer = 0)
+    Public Sub New(player As Player, Optional mineCount As Integer = 0)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         Dim gameboard As New Gameboard()
 
-        playerLbl.Text = player
-        avatarPic.Image = avatar
+        playerLbl.Text = player.name
+        avatarPic.Image = player.avatar
 
-        gameboard.mineCount = DetermineMineCount()
+        'gameboard.mineCount = DetermineMineCount()
 
 
 

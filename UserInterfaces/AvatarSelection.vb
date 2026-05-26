@@ -10,10 +10,28 @@
 
 
 Public Class AvatarSelection
+
+    Public avatar As Image
+    Public difficulty As String
+    Public player As Player
+
+    Public Sub New(difficulty As String)
+        ' This call is required by the designer.
+        InitializeComponent()
+    End Sub
+
     Private Sub gameStartBtn_Click(sender As Object, e As EventArgs) Handles gameStartBtn.Click
+
+        player.name = playerText.Text
+        player.avatar = bodyLayout.Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked).Image
+        player.difficulty = difficulty
+        player.complitionTime = TimeSpan.Zero
 
         Dim minefield As New Minefield()
         minefield.Show()
         Me.Hide()
     End Sub
+
+
+
 End Class
