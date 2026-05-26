@@ -23,73 +23,76 @@ Partial Class AvatarSelection
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AvatarSelection))
-        TableLayoutPanel3 = New TableLayoutPanel()
-        TableLayoutPanel1 = New TableLayoutPanel()
+        formLayout = New TableLayoutPanel()
+        topLayout = New TableLayoutPanel()
         titlePic1 = New PictureBox()
         titleLbl = New Label()
         titlePic2 = New PictureBox()
-        TableLayoutPanel2 = New TableLayoutPanel()
+        bottomLayout = New TableLayoutPanel()
         nameLbl = New Label()
         nameText = New TextBox()
         gameStartBtn = New Button()
-        TableLayoutPanel4 = New TableLayoutPanel()
-        avatarSelectLbl = New Label()
-        maleBlondeCKB = New CheckBox()
-        maleRedCKB = New CheckBox()
-        maleBrownCKB = New CheckBox()
-        femaleBlondeCKB = New CheckBox()
-        femaleRedCKB = New CheckBox()
-        femaleBrownCKB = New CheckBox()
-        TableLayoutPanel3.SuspendLayout()
-        TableLayoutPanel1.SuspendLayout()
+        Panel1 = New Panel()
+        bodyLayout = New TableLayoutPanel()
+        femaleBrownRad = New RadioButton()
+        femaleRedRad = New RadioButton()
+        femaleBlondeRad = New RadioButton()
+        maleBrownRad = New RadioButton()
+        maleRedRad = New RadioButton()
+        avatarTitleLbl = New Label()
+        maleBlondeRad = New RadioButton()
+        formLayout.SuspendLayout()
+        topLayout.SuspendLayout()
         CType(titlePic1, ComponentModel.ISupportInitialize).BeginInit()
         CType(titlePic2, ComponentModel.ISupportInitialize).BeginInit()
-        TableLayoutPanel2.SuspendLayout()
-        TableLayoutPanel4.SuspendLayout()
+        bottomLayout.SuspendLayout()
+        Panel1.SuspendLayout()
+        bodyLayout.SuspendLayout()
         SuspendLayout()
         ' 
-        ' TableLayoutPanel3
+        ' formLayout
         ' 
-        TableLayoutPanel3.ColumnCount = 1
-        TableLayoutPanel3.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel3.Controls.Add(TableLayoutPanel1, 0, 0)
-        TableLayoutPanel3.Controls.Add(TableLayoutPanel2, 0, 2)
-        TableLayoutPanel3.Controls.Add(TableLayoutPanel4, 0, 1)
-        TableLayoutPanel3.Dock = DockStyle.Fill
-        TableLayoutPanel3.Location = New Point(0, 0)
-        TableLayoutPanel3.Name = "TableLayoutPanel3"
-        TableLayoutPanel3.RowCount = 3
-        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Percent, 28.2442741F))
-        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Percent, 71.75572F))
-        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Absolute, 56F))
-        TableLayoutPanel3.Size = New Size(436, 450)
-        TableLayoutPanel3.TabIndex = 6
+        formLayout.ColumnCount = 1
+        formLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        formLayout.Controls.Add(topLayout, 0, 0)
+        formLayout.Controls.Add(bottomLayout, 0, 2)
+        formLayout.Controls.Add(Panel1, 0, 1)
+        formLayout.Dock = DockStyle.Fill
+        formLayout.Location = New Point(0, 0)
+        formLayout.Name = "formLayout"
+        formLayout.RowCount = 3
+        formLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 27.2264633F))
+        formLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 72.77354F))
+        formLayout.RowStyles.Add(New RowStyle(SizeType.Absolute, 56F))
+        formLayout.Size = New Size(436, 456)
+        formLayout.TabIndex = 6
         ' 
-        ' TableLayoutPanel1
+        ' topLayout
         ' 
-        TableLayoutPanel1.ColumnCount = 3
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
-        TableLayoutPanel1.Controls.Add(titlePic1, 0, 0)
-        TableLayoutPanel1.Controls.Add(titleLbl, 1, 0)
-        TableLayoutPanel1.Controls.Add(titlePic2, 2, 0)
-        TableLayoutPanel1.Dock = DockStyle.Top
-        TableLayoutPanel1.Location = New Point(3, 3)
-        TableLayoutPanel1.Name = "TableLayoutPanel1"
-        TableLayoutPanel1.RowCount = 1
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        TableLayoutPanel1.Size = New Size(430, 100)
-        TableLayoutPanel1.TabIndex = 3
+        topLayout.ColumnCount = 3
+        topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
+        topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40F))
+        topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
+        topLayout.Controls.Add(titlePic1, 0, 0)
+        topLayout.Controls.Add(titleLbl, 1, 0)
+        topLayout.Controls.Add(titlePic2, 2, 0)
+        topLayout.Dock = DockStyle.Top
+        topLayout.Location = New Point(3, 3)
+        topLayout.Name = "topLayout"
+        topLayout.RowCount = 1
+        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        topLayout.Size = New Size(430, 100)
+        topLayout.TabIndex = 3
         ' 
         ' titlePic1
         ' 
+        titlePic1.BackColor = Color.Transparent
         titlePic1.Dock = DockStyle.Fill
-        titlePic1.Image = CType(resources.GetObject("titlePic1.Image"), Image)
+        titlePic1.Image = My.Resources.Resources.Flag
         titlePic1.Location = New Point(3, 3)
         titlePic1.Name = "titlePic1"
         titlePic1.Size = New Size(123, 94)
-        titlePic1.SizeMode = PictureBoxSizeMode.StretchImage
+        titlePic1.SizeMode = PictureBoxSizeMode.Zoom
         titlePic1.TabIndex = 1
         titlePic1.TabStop = False
         ' 
@@ -106,31 +109,32 @@ Partial Class AvatarSelection
         ' 
         ' titlePic2
         ' 
+        titlePic2.BackColor = Color.Transparent
         titlePic2.Dock = DockStyle.Fill
-        titlePic2.Image = CType(resources.GetObject("titlePic2.Image"), Image)
+        titlePic2.Image = My.Resources.Resources.Detonated
         titlePic2.Location = New Point(304, 3)
         titlePic2.Name = "titlePic2"
         titlePic2.Size = New Size(123, 94)
-        titlePic2.SizeMode = PictureBoxSizeMode.StretchImage
+        titlePic2.SizeMode = PictureBoxSizeMode.Zoom
         titlePic2.TabIndex = 2
         titlePic2.TabStop = False
         ' 
-        ' TableLayoutPanel2
+        ' bottomLayout
         ' 
-        TableLayoutPanel2.ColumnCount = 3
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel2.Controls.Add(nameLbl, 0, 0)
-        TableLayoutPanel2.Controls.Add(nameText, 1, 0)
-        TableLayoutPanel2.Controls.Add(gameStartBtn, 2, 0)
-        TableLayoutPanel2.Dock = DockStyle.Bottom
-        TableLayoutPanel2.Location = New Point(3, 396)
-        TableLayoutPanel2.Name = "TableLayoutPanel2"
-        TableLayoutPanel2.RowCount = 1
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        TableLayoutPanel2.Size = New Size(430, 51)
-        TableLayoutPanel2.TabIndex = 4
+        bottomLayout.ColumnCount = 3
+        bottomLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        bottomLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        bottomLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        bottomLayout.Controls.Add(nameLbl, 0, 0)
+        bottomLayout.Controls.Add(nameText, 1, 0)
+        bottomLayout.Controls.Add(gameStartBtn, 2, 0)
+        bottomLayout.Dock = DockStyle.Bottom
+        bottomLayout.Location = New Point(3, 402)
+        bottomLayout.Name = "bottomLayout"
+        bottomLayout.RowCount = 1
+        bottomLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        bottomLayout.Size = New Size(430, 51)
+        bottomLayout.TabIndex = 4
         ' 
         ' nameLbl
         ' 
@@ -146,9 +150,10 @@ Partial Class AvatarSelection
         ' nameText
         ' 
         nameText.Anchor = AnchorStyles.Left Or AnchorStyles.Right
-        nameText.Location = New Point(146, 14)
+        nameText.Font = New Font("Gill Sans Ultra Bold", 11.25F, FontStyle.Italic)
+        nameText.Location = New Point(146, 12)
         nameText.Name = "nameText"
-        nameText.Size = New Size(137, 23)
+        nameText.Size = New Size(137, 26)
         nameText.TabIndex = 1
         ' 
         ' gameStartBtn
@@ -162,153 +167,176 @@ Partial Class AvatarSelection
         gameStartBtn.Text = "Lets Play!"
         gameStartBtn.UseVisualStyleBackColor = True
         ' 
-        ' TableLayoutPanel4
+        ' Panel1
         ' 
-        TableLayoutPanel4.ColumnCount = 3
-        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
-        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
-        TableLayoutPanel4.Controls.Add(femaleBrownCKB, 2, 2)
-        TableLayoutPanel4.Controls.Add(femaleRedCKB, 1, 2)
-        TableLayoutPanel4.Controls.Add(femaleBlondeCKB, 0, 2)
-        TableLayoutPanel4.Controls.Add(maleBrownCKB, 2, 1)
-        TableLayoutPanel4.Controls.Add(maleRedCKB, 1, 1)
-        TableLayoutPanel4.Controls.Add(avatarSelectLbl, 0, 0)
-        TableLayoutPanel4.Controls.Add(maleBlondeCKB, 0, 1)
-        TableLayoutPanel4.Dock = DockStyle.Fill
-        TableLayoutPanel4.Location = New Point(3, 114)
-        TableLayoutPanel4.Name = "TableLayoutPanel4"
-        TableLayoutPanel4.RowCount = 3
-        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 20F))
-        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 40F))
-        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 40F))
-        TableLayoutPanel4.Size = New Size(430, 276)
-        TableLayoutPanel4.TabIndex = 5
+        Panel1.Controls.Add(bodyLayout)
+        Panel1.Dock = DockStyle.Fill
+        Panel1.Location = New Point(3, 111)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(430, 285)
+        Panel1.TabIndex = 5
         ' 
-        ' avatarSelectLbl
+        ' bodyLayout
         ' 
-        avatarSelectLbl.AutoSize = True
-        TableLayoutPanel4.SetColumnSpan(avatarSelectLbl, 3)
-        avatarSelectLbl.Dock = DockStyle.Fill
-        avatarSelectLbl.Font = New Font("Gill Sans Ultra Bold", 16F, FontStyle.Italic)
-        avatarSelectLbl.Location = New Point(3, 0)
-        avatarSelectLbl.Name = "avatarSelectLbl"
-        avatarSelectLbl.Size = New Size(424, 55)
-        avatarSelectLbl.TabIndex = 0
-        avatarSelectLbl.Text = "Choose your Avatar"
-        avatarSelectLbl.TextAlign = ContentAlignment.MiddleCenter
+        bodyLayout.ColumnCount = 3
+        bodyLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.33333F))
+        bodyLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
+        bodyLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
+        bodyLayout.Controls.Add(femaleBrownRad, 2, 2)
+        bodyLayout.Controls.Add(femaleRedRad, 1, 2)
+        bodyLayout.Controls.Add(femaleBlondeRad, 0, 2)
+        bodyLayout.Controls.Add(maleBrownRad, 2, 1)
+        bodyLayout.Controls.Add(maleRedRad, 1, 1)
+        bodyLayout.Controls.Add(avatarTitleLbl, 0, 0)
+        bodyLayout.Controls.Add(maleBlondeRad, 0, 1)
+        bodyLayout.Dock = DockStyle.Fill
+        bodyLayout.Location = New Point(0, 0)
+        bodyLayout.Name = "bodyLayout"
+        bodyLayout.RowCount = 3
+        bodyLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 14.2550917F))
+        bodyLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 42.8724556F))
+        bodyLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 42.8724556F))
+        bodyLayout.Size = New Size(430, 285)
+        bodyLayout.TabIndex = 0
         ' 
-        ' maleBlondeCKB
+        ' femaleBrownRad
         ' 
-        maleBlondeCKB.Appearance = Appearance.Button
-        maleBlondeCKB.AutoSize = True
-        maleBlondeCKB.Dock = DockStyle.Fill
-        maleBlondeCKB.Image = CType(resources.GetObject("maleBlondeCKB.Image"), Image)
-        maleBlondeCKB.Location = New Point(3, 58)
-        maleBlondeCKB.Name = "maleBlondeCKB"
-        maleBlondeCKB.Size = New Size(137, 104)
-        maleBlondeCKB.TabIndex = 1
-        maleBlondeCKB.UseVisualStyleBackColor = True
+        femaleBrownRad.Appearance = Appearance.Button
+        femaleBrownRad.AutoSize = True
+        femaleBrownRad.BackColor = SystemColors.Control
+        femaleBrownRad.Dock = DockStyle.Fill
+        femaleBrownRad.Image = My.Resources.Resources.FBrAva
+        femaleBrownRad.Location = New Point(289, 165)
+        femaleBrownRad.Name = "femaleBrownRad"
+        femaleBrownRad.Size = New Size(138, 117)
+        femaleBrownRad.TabIndex = 6
+        femaleBrownRad.TabStop = True
+        femaleBrownRad.UseVisualStyleBackColor = False
         ' 
-        ' maleRedCKB
+        ' femaleRedRad
         ' 
-        maleRedCKB.Appearance = Appearance.Button
-        maleRedCKB.AutoSize = True
-        maleRedCKB.Dock = DockStyle.Fill
-        maleRedCKB.Image = CType(resources.GetObject("maleRedCKB.Image"), Image)
-        maleRedCKB.Location = New Point(146, 58)
-        maleRedCKB.Name = "maleRedCKB"
-        maleRedCKB.Size = New Size(137, 104)
-        maleRedCKB.TabIndex = 2
-        maleRedCKB.UseVisualStyleBackColor = True
+        femaleRedRad.Appearance = Appearance.Button
+        femaleRedRad.AutoSize = True
+        femaleRedRad.BackColor = SystemColors.Control
+        femaleRedRad.Dock = DockStyle.Fill
+        femaleRedRad.Image = My.Resources.Resources.FRedAva
+        femaleRedRad.Location = New Point(146, 165)
+        femaleRedRad.Name = "femaleRedRad"
+        femaleRedRad.Size = New Size(137, 117)
+        femaleRedRad.TabIndex = 5
+        femaleRedRad.TabStop = True
+        femaleRedRad.UseVisualStyleBackColor = False
         ' 
-        ' maleBrownCKB
+        ' femaleBlondeRad
         ' 
-        maleBrownCKB.Appearance = Appearance.Button
-        maleBrownCKB.AutoSize = True
-        maleBrownCKB.Dock = DockStyle.Fill
-        maleBrownCKB.Image = CType(resources.GetObject("maleBrownCKB.Image"), Image)
-        maleBrownCKB.Location = New Point(289, 58)
-        maleBrownCKB.Name = "maleBrownCKB"
-        maleBrownCKB.Size = New Size(138, 104)
-        maleBrownCKB.TabIndex = 3
-        maleBrownCKB.UseVisualStyleBackColor = True
+        femaleBlondeRad.Appearance = Appearance.Button
+        femaleBlondeRad.AutoSize = True
+        femaleBlondeRad.BackColor = SystemColors.Control
+        femaleBlondeRad.Dock = DockStyle.Fill
+        femaleBlondeRad.Image = My.Resources.Resources.FBlAva
+        femaleBlondeRad.Location = New Point(3, 165)
+        femaleBlondeRad.Name = "femaleBlondeRad"
+        femaleBlondeRad.Size = New Size(137, 117)
+        femaleBlondeRad.TabIndex = 4
+        femaleBlondeRad.TabStop = True
+        femaleBlondeRad.UseVisualStyleBackColor = False
         ' 
-        ' femaleBlondeCKB
+        ' maleBrownRad
         ' 
-        femaleBlondeCKB.Appearance = Appearance.Button
-        femaleBlondeCKB.AutoSize = True
-        femaleBlondeCKB.Dock = DockStyle.Fill
-        femaleBlondeCKB.Image = CType(resources.GetObject("femaleBlondeCKB.Image"), Image)
-        femaleBlondeCKB.Location = New Point(3, 168)
-        femaleBlondeCKB.Name = "femaleBlondeCKB"
-        femaleBlondeCKB.Size = New Size(137, 105)
-        femaleBlondeCKB.TabIndex = 4
-        femaleBlondeCKB.UseVisualStyleBackColor = True
+        maleBrownRad.Appearance = Appearance.Button
+        maleBrownRad.AutoSize = True
+        maleBrownRad.BackColor = SystemColors.Control
+        maleBrownRad.Dock = DockStyle.Fill
+        maleBrownRad.Image = My.Resources.Resources.MBrAva
+        maleBrownRad.Location = New Point(289, 43)
+        maleBrownRad.Name = "maleBrownRad"
+        maleBrownRad.Size = New Size(138, 116)
+        maleBrownRad.TabIndex = 3
+        maleBrownRad.TabStop = True
+        maleBrownRad.UseVisualStyleBackColor = False
         ' 
-        ' femaleRedCKB
+        ' maleRedRad
         ' 
-        femaleRedCKB.Appearance = Appearance.Button
-        femaleRedCKB.AutoSize = True
-        femaleRedCKB.Dock = DockStyle.Fill
-        femaleRedCKB.Image = CType(resources.GetObject("femaleRedCKB.Image"), Image)
-        femaleRedCKB.Location = New Point(146, 168)
-        femaleRedCKB.Name = "femaleRedCKB"
-        femaleRedCKB.Size = New Size(137, 105)
-        femaleRedCKB.TabIndex = 5
-        femaleRedCKB.UseVisualStyleBackColor = True
+        maleRedRad.Appearance = Appearance.Button
+        maleRedRad.AutoSize = True
+        maleRedRad.BackColor = SystemColors.Control
+        maleRedRad.Dock = DockStyle.Fill
+        maleRedRad.Image = My.Resources.Resources.MRedAva
+        maleRedRad.Location = New Point(146, 43)
+        maleRedRad.Name = "maleRedRad"
+        maleRedRad.Size = New Size(137, 116)
+        maleRedRad.TabIndex = 2
+        maleRedRad.TabStop = True
+        maleRedRad.UseVisualStyleBackColor = False
         ' 
-        ' femaleBrownCKB
+        ' avatarTitleLbl
         ' 
-        femaleBrownCKB.Appearance = Appearance.Button
-        femaleBrownCKB.AutoSize = True
-        femaleBrownCKB.Dock = DockStyle.Fill
-        femaleBrownCKB.Image = CType(resources.GetObject("femaleBrownCKB.Image"), Image)
-        femaleBrownCKB.Location = New Point(289, 168)
-        femaleBrownCKB.Name = "femaleBrownCKB"
-        femaleBrownCKB.Size = New Size(138, 105)
-        femaleBrownCKB.TabIndex = 6
-        femaleBrownCKB.UseVisualStyleBackColor = True
+        avatarTitleLbl.AutoSize = True
+        bodyLayout.SetColumnSpan(avatarTitleLbl, 3)
+        avatarTitleLbl.Dock = DockStyle.Fill
+        avatarTitleLbl.Font = New Font("Gill Sans Ultra Bold", 16F, FontStyle.Italic)
+        avatarTitleLbl.Location = New Point(3, 0)
+        avatarTitleLbl.Name = "avatarTitleLbl"
+        avatarTitleLbl.Size = New Size(424, 40)
+        avatarTitleLbl.TabIndex = 0
+        avatarTitleLbl.Text = "Choose your Avatar"
+        avatarTitleLbl.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' maleBlondeRad
+        ' 
+        maleBlondeRad.Appearance = Appearance.Button
+        maleBlondeRad.AutoSize = True
+        maleBlondeRad.BackColor = SystemColors.Control
+        maleBlondeRad.Dock = DockStyle.Fill
+        maleBlondeRad.Image = CType(resources.GetObject("maleBlondeRad.Image"), Image)
+        maleBlondeRad.Location = New Point(3, 43)
+        maleBlondeRad.Name = "maleBlondeRad"
+        maleBlondeRad.Size = New Size(137, 116)
+        maleBlondeRad.TabIndex = 1
+        maleBlondeRad.TabStop = True
+        maleBlondeRad.UseVisualStyleBackColor = False
         ' 
         ' AvatarSelection
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(436, 450)
-        Controls.Add(TableLayoutPanel3)
+        ClientSize = New Size(436, 456)
+        Controls.Add(formLayout)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
-        MaximumSize = New Size(452, 489)
-        MinimumSize = New Size(452, 489)
+        MaximumSize = New Size(452, 495)
+        MinimumSize = New Size(452, 495)
         Name = "AvatarSelection"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Mine Sweeper"
-        TableLayoutPanel3.ResumeLayout(False)
-        TableLayoutPanel1.ResumeLayout(False)
+        formLayout.ResumeLayout(False)
+        topLayout.ResumeLayout(False)
         CType(titlePic1, ComponentModel.ISupportInitialize).EndInit()
         CType(titlePic2, ComponentModel.ISupportInitialize).EndInit()
-        TableLayoutPanel2.ResumeLayout(False)
-        TableLayoutPanel2.PerformLayout()
-        TableLayoutPanel4.ResumeLayout(False)
-        TableLayoutPanel4.PerformLayout()
+        bottomLayout.ResumeLayout(False)
+        bottomLayout.PerformLayout()
+        Panel1.ResumeLayout(False)
+        bodyLayout.ResumeLayout(False)
+        bodyLayout.PerformLayout()
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
-    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents formLayout As TableLayoutPanel
+    Friend WithEvents topLayout As TableLayoutPanel
     Friend WithEvents titlePic1 As PictureBox
     Friend WithEvents titleLbl As Label
     Friend WithEvents titlePic2 As PictureBox
-    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents bottomLayout As TableLayoutPanel
     Friend WithEvents nameLbl As Label
     Friend WithEvents nameText As TextBox
     Friend WithEvents gameStartBtn As Button
-    Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
-    Friend WithEvents avatarSelectLbl As Label
-    Friend WithEvents maleBlondeCKB As CheckBox
-    Friend WithEvents femaleBrownCKB As CheckBox
-    Friend WithEvents femaleRedCKB As CheckBox
-    Friend WithEvents femaleBlondeCKB As CheckBox
-    Friend WithEvents maleBrownCKB As CheckBox
-    Friend WithEvents maleRedCKB As CheckBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents bodyLayout As TableLayoutPanel
+    Friend WithEvents avatarTitleLbl As Label
+    Friend WithEvents maleBlondeRad As RadioButton
+    Friend WithEvents femaleBrownRad As RadioButton
+    Friend WithEvents femaleRedRad As RadioButton
+    Friend WithEvents femaleBlondeRad As RadioButton
+    Friend WithEvents maleBrownRad As RadioButton
+    Friend WithEvents maleRedRad As RadioButton
 End Class

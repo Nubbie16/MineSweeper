@@ -10,5 +10,10 @@
 
 
 Public Class AvatarSelection
+    Private Sub gameStartBtn_Click(sender As Object, e As EventArgs) Handles gameStartBtn.Click
 
+        Dim minefield As New Minefield()
+        minefield.Show()
+        Me.Hide()
+    End Sub
 End Class

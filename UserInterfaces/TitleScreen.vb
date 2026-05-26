@@ -8,7 +8,14 @@
 'GitHub Repository: https://github.com/Nubbie16/MineSweeper
 
 Public Class TitleScreen
+    Private Sub newGameBtn_Click(sender As Object, e As EventArgs) Handles newGameBtn.Click
+        Dim avatarSelection As New AvatarSelection
+        avatarSelection.Show()
+        Hide()
 
+    End Sub
 
+    Private Sub highScoreTC_SelectedIndexChanged(sender As Object, e As EventArgs) Handles highScoreTC.SelectedIndexChanged
 
+    End Sub
 End Class

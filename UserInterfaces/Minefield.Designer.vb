@@ -23,103 +23,167 @@ Partial Class Minefield
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Minefield))
-        TableLayoutPanel3 = New TableLayoutPanel()
-        TableLayoutPanel1 = New TableLayoutPanel()
-        titlePic1 = New PictureBox()
-        titleLbl = New Label()
-        titlePic2 = New PictureBox()
-        TableLayoutPanel3.SuspendLayout()
-        TableLayoutPanel1.SuspendLayout()
-        CType(titlePic1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(titlePic2, ComponentModel.ISupportInitialize).BeginInit()
+        formLayout = New TableLayoutPanel()
+        topLayout = New TableLayoutPanel()
+        playerLbl = New Label()
+        avatarPic = New PictureBox()
+        timerLbl = New Label()
+        gameboardPanel = New Panel()
+        bottomLayout = New TableLayoutPanel()
+        restartBtn = New Button()
+        quitBtn = New Button()
+        formLayout.SuspendLayout()
+        topLayout.SuspendLayout()
+        CType(avatarPic, ComponentModel.ISupportInitialize).BeginInit()
+        bottomLayout.SuspendLayout()
         SuspendLayout()
         ' 
-        ' TableLayoutPanel3
+        ' formLayout
         ' 
-        TableLayoutPanel3.ColumnCount = 1
-        TableLayoutPanel3.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel3.Controls.Add(TableLayoutPanel1, 0, 0)
-        TableLayoutPanel3.Dock = DockStyle.Fill
-        TableLayoutPanel3.Location = New Point(0, 0)
-        TableLayoutPanel3.Name = "TableLayoutPanel3"
-        TableLayoutPanel3.RowCount = 3
-        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Percent, 28.2442741F))
-        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Percent, 71.75572F))
-        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Absolute, 56F))
-        TableLayoutPanel3.Size = New Size(436, 450)
-        TableLayoutPanel3.TabIndex = 6
+        formLayout.ColumnCount = 1
+        formLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        formLayout.Controls.Add(topLayout, 0, 0)
+        formLayout.Controls.Add(gameboardPanel, 0, 1)
+        formLayout.Controls.Add(bottomLayout, 0, 2)
+        formLayout.Dock = DockStyle.Fill
+        formLayout.Location = New Point(0, 0)
+        formLayout.Name = "formLayout"
+        formLayout.RowCount = 3
+        formLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 24.81203F))
+        formLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 75.18797F))
+        formLayout.RowStyles.Add(New RowStyle(SizeType.Absolute, 68F))
+        formLayout.Size = New Size(436, 456)
+        formLayout.TabIndex = 6
         ' 
-        ' TableLayoutPanel1
+        ' topLayout
         ' 
-        TableLayoutPanel1.ColumnCount = 3
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
-        TableLayoutPanel1.Controls.Add(titlePic1, 0, 0)
-        TableLayoutPanel1.Controls.Add(titleLbl, 1, 0)
-        TableLayoutPanel1.Controls.Add(titlePic2, 2, 0)
-        TableLayoutPanel1.Dock = DockStyle.Top
-        TableLayoutPanel1.Location = New Point(3, 3)
-        TableLayoutPanel1.Name = "TableLayoutPanel1"
-        TableLayoutPanel1.RowCount = 1
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        TableLayoutPanel1.Size = New Size(430, 100)
-        TableLayoutPanel1.TabIndex = 3
+        topLayout.ColumnCount = 3
+        topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
+        topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40F))
+        topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
+        topLayout.Controls.Add(playerLbl, 1, 0)
+        topLayout.Controls.Add(avatarPic, 2, 0)
+        topLayout.Controls.Add(timerLbl, 0, 0)
+        topLayout.Dock = DockStyle.Top
+        topLayout.Location = New Point(3, 3)
+        topLayout.Name = "topLayout"
+        topLayout.RowCount = 1
+        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        topLayout.Size = New Size(430, 90)
+        topLayout.TabIndex = 4
         ' 
-        ' titlePic1
+        ' playerLbl
         ' 
-        titlePic1.Dock = DockStyle.Fill
-        titlePic1.Image = CType(resources.GetObject("titlePic1.Image"), Image)
-        titlePic1.Location = New Point(3, 3)
-        titlePic1.Name = "titlePic1"
-        titlePic1.Size = New Size(123, 94)
-        titlePic1.SizeMode = PictureBoxSizeMode.StretchImage
-        titlePic1.TabIndex = 1
-        titlePic1.TabStop = False
+        playerLbl.Dock = DockStyle.Fill
+        playerLbl.Font = New Font("Gill Sans Ultra Bold", 19F, FontStyle.Italic)
+        playerLbl.Location = New Point(132, 0)
+        playerLbl.Name = "playerLbl"
+        playerLbl.Size = New Size(166, 90)
+        playerLbl.TabIndex = 0
+        playerLbl.Text = "Name Avatar>>"
+        playerLbl.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' titleLbl
+        ' avatarPic
         ' 
-        titleLbl.Dock = DockStyle.Fill
-        titleLbl.Font = New Font("Gill Sans Ultra Bold", 19F, FontStyle.Italic)
-        titleLbl.Location = New Point(132, 0)
-        titleLbl.Name = "titleLbl"
-        titleLbl.Size = New Size(166, 100)
-        titleLbl.TabIndex = 0
-        titleLbl.Text = "Mine Sweeper"
-        titleLbl.TextAlign = ContentAlignment.MiddleCenter
+        avatarPic.BackColor = Color.Transparent
+        avatarPic.Dock = DockStyle.Fill
+        avatarPic.Location = New Point(304, 3)
+        avatarPic.Name = "avatarPic"
+        avatarPic.Size = New Size(123, 84)
+        avatarPic.SizeMode = PictureBoxSizeMode.Zoom
+        avatarPic.TabIndex = 2
+        avatarPic.TabStop = False
         ' 
-        ' titlePic2
+        ' timerLbl
         ' 
-        titlePic2.Dock = DockStyle.Fill
-        titlePic2.Image = CType(resources.GetObject("titlePic2.Image"), Image)
-        titlePic2.Location = New Point(304, 3)
-        titlePic2.Name = "titlePic2"
-        titlePic2.Size = New Size(123, 94)
-        titlePic2.SizeMode = PictureBoxSizeMode.StretchImage
-        titlePic2.TabIndex = 2
-        titlePic2.TabStop = False
+        timerLbl.Anchor = AnchorStyles.None
+        timerLbl.AutoSize = True
+        timerLbl.Font = New Font("Gill Sans Ultra Bold", 10F, FontStyle.Italic)
+        timerLbl.Location = New Point(9, 35)
+        timerLbl.Name = "timerLbl"
+        timerLbl.Size = New Size(111, 20)
+        timerLbl.TabIndex = 3
+        timerLbl.Text = "00:00:00.0"
+        timerLbl.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' gameboardPanel
+        ' 
+        gameboardPanel.BackgroundImage = CType(resources.GetObject("gameboardPanel.BackgroundImage"), Image)
+        gameboardPanel.BackgroundImageLayout = ImageLayout.Zoom
+        gameboardPanel.Dock = DockStyle.Fill
+        gameboardPanel.Location = New Point(3, 99)
+        gameboardPanel.Name = "gameboardPanel"
+        gameboardPanel.Size = New Size(430, 285)
+        gameboardPanel.TabIndex = 6
+        ' 
+        ' bottomLayout
+        ' 
+        bottomLayout.ColumnCount = 2
+        bottomLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        bottomLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        bottomLayout.Controls.Add(restartBtn, 0, 0)
+        bottomLayout.Controls.Add(quitBtn, 1, 0)
+        bottomLayout.Dock = DockStyle.Fill
+        bottomLayout.Location = New Point(3, 390)
+        bottomLayout.Name = "bottomLayout"
+        bottomLayout.RowCount = 1
+        bottomLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        bottomLayout.Size = New Size(430, 63)
+        bottomLayout.TabIndex = 7
+        ' 
+        ' restartBtn
+        ' 
+        restartBtn.Dock = DockStyle.Fill
+        restartBtn.Font = New Font("Gill Sans Ultra Bold", 11.25F, FontStyle.Italic)
+        restartBtn.Location = New Point(3, 3)
+        restartBtn.Name = "restartBtn"
+        restartBtn.Size = New Size(209, 57)
+        restartBtn.TabIndex = 0
+        restartBtn.Text = "Restart"
+        restartBtn.UseVisualStyleBackColor = True
+        ' 
+        ' quitBtn
+        ' 
+        quitBtn.Dock = DockStyle.Fill
+        quitBtn.Font = New Font("Gill Sans Ultra Bold", 11.25F, FontStyle.Italic)
+        quitBtn.Image = CType(resources.GetObject("quitBtn.Image"), Image)
+        quitBtn.Location = New Point(218, 3)
+        quitBtn.Name = "quitBtn"
+        quitBtn.Size = New Size(209, 57)
+        quitBtn.TabIndex = 1
+        quitBtn.Text = "Give Up!"
+        quitBtn.TextAlign = ContentAlignment.MiddleRight
+        quitBtn.TextImageRelation = TextImageRelation.TextBeforeImage
+        quitBtn.UseVisualStyleBackColor = True
         ' 
         ' Minefield
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(436, 450)
-        Controls.Add(TableLayoutPanel3)
+        ClientSize = New Size(436, 456)
+        Controls.Add(formLayout)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
-        MaximumSize = New Size(452, 489)
-        MinimumSize = New Size(452, 489)
+        MaximumSize = New Size(452, 495)
+        MinimumSize = New Size(452, 495)
         Name = "Minefield"
-        Text = "Minefield"
-        TableLayoutPanel3.ResumeLayout(False)
-        TableLayoutPanel1.ResumeLayout(False)
-        CType(titlePic1, ComponentModel.ISupportInitialize).EndInit()
-        CType(titlePic2, ComponentModel.ISupportInitialize).EndInit()
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Mine Sweeper"
+        formLayout.ResumeLayout(False)
+        topLayout.ResumeLayout(False)
+        topLayout.PerformLayout()
+        CType(avatarPic, ComponentModel.ISupportInitialize).EndInit()
+        bottomLayout.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
-    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents titlePic1 As PictureBox
-    Friend WithEvents titleLbl As Label
-    Friend WithEvents titlePic2 As PictureBox
+    Friend WithEvents formLayout As TableLayoutPanel
+    Friend WithEvents topLayout As TableLayoutPanel
+    Friend WithEvents playerLbl As Label
+    Friend WithEvents avatarPic As PictureBox
+    Friend WithEvents timerLbl As Label
+    Friend WithEvents restartBtn As Button
+    Friend WithEvents quitBtn As Button
+    Friend WithEvents gameboardPanel As Panel
+    Friend WithEvents bottomLayout As TableLayoutPanel
 End Class

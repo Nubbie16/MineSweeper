@@ -6,11 +6,17 @@
     <StartupObject>MineSweeper.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
-    <ApplicationIcon>Assets\32px\icon32.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\icon32.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Assets\32px\icon32.ico" />
+    <Compile Remove="Assets\32px\**" />
+    <EmbeddedResource Remove="Assets\32px\**" />
+    <None Remove="Assets\32px\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\icon32.ico" />
   </ItemGroup>
 
   <ItemGroup>

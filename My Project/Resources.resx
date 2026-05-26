@@ -117,4 +117,65 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Maybe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\Maybe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MBrDead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\MBrDead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MBlAva" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\MBlAva.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FBlAva" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\FBlAva.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MBrAva" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\MBrAva.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MRedDead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\MRedDead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Detonated" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\Detonated.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FBrDead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\FBrDead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FRedDead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\FRedDead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FBrAva" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\FBrAva.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FRedAva" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\FRedAva.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="XFlag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\XFlag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\Mine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FBlDead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\FBlDead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Detonated48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Detonated48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MRedAva" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\MRedAva.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MBlDead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\MBlDead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Detonated56" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Detonated56.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\88px\Flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Detonated48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Detonated48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
