@@ -30,7 +30,7 @@ Partial Class AvatarSelection
         titlePic2 = New PictureBox()
         bottomLayout = New TableLayoutPanel()
         nameLbl = New Label()
-        nameText = New TextBox()
+        playerText = New TextBox()
         gameStartBtn = New Button()
         Panel1 = New Panel()
         bodyLayout = New TableLayoutPanel()
@@ -126,7 +126,7 @@ Partial Class AvatarSelection
         bottomLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
         bottomLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
         bottomLayout.Controls.Add(nameLbl, 0, 0)
-        bottomLayout.Controls.Add(nameText, 1, 0)
+        bottomLayout.Controls.Add(playerText, 1, 0)
         bottomLayout.Controls.Add(gameStartBtn, 2, 0)
         bottomLayout.Dock = DockStyle.Bottom
         bottomLayout.Location = New Point(3, 402)
@@ -147,14 +147,14 @@ Partial Class AvatarSelection
         nameLbl.TabIndex = 0
         nameLbl.Text = "Player Name:"
         ' 
-        ' nameText
+        ' playerText
         ' 
-        nameText.Anchor = AnchorStyles.Left Or AnchorStyles.Right
-        nameText.Font = New Font("Gill Sans Ultra Bold", 11.25F, FontStyle.Italic)
-        nameText.Location = New Point(146, 12)
-        nameText.Name = "nameText"
-        nameText.Size = New Size(137, 26)
-        nameText.TabIndex = 1
+        playerText.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        playerText.Font = New Font("Gill Sans Ultra Bold", 11.25F, FontStyle.Italic)
+        playerText.Location = New Point(146, 12)
+        playerText.Name = "playerText"
+        playerText.Size = New Size(137, 26)
+        playerText.TabIndex = 1
         ' 
         ' gameStartBtn
         ' 
@@ -328,7 +328,7 @@ Partial Class AvatarSelection
     Friend WithEvents titlePic2 As PictureBox
     Friend WithEvents bottomLayout As TableLayoutPanel
     Friend WithEvents nameLbl As Label
-    Friend WithEvents nameText As TextBox
+    Friend WithEvents playerText As TextBox
     Friend WithEvents gameStartBtn As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents bodyLayout As TableLayoutPanel
