@@ -35,20 +35,20 @@ Partial Class TitleScreen
         highScoreTC = New TabControl()
         easyTab = New TabPage()
         easyHighLV = New ListView()
-        playerCol = New ColumnHeader()
-        completedCol = New ColumnHeader()
+        easyPlayerCol = New ColumnHeader()
+        easyCompletedCol = New ColumnHeader()
         mediumTab = New TabPage()
         mediumHighLV = New ListView()
-        ColumnHeader1 = New ColumnHeader()
-        ColumnHeader2 = New ColumnHeader()
+        mediumPlayerCol = New ColumnHeader()
+        mediumCompletedCol = New ColumnHeader()
         hardTab = New TabPage()
         hardHighLV = New ListView()
-        ColumnHeader3 = New ColumnHeader()
-        ColumnHeader4 = New ColumnHeader()
+        hardPlayerCol = New ColumnHeader()
+        hardCompletedCol = New ColumnHeader()
         insaneTab = New TabPage()
         insaneHighLV = New ListView()
-        ColumnHeader5 = New ColumnHeader()
-        ColumnHeader6 = New ColumnHeader()
+        insanePlayerCol = New ColumnHeader()
+        insameCompletedCol = New ColumnHeader()
         formLayout.SuspendLayout()
         topLayout.SuspendLayout()
         CType(titlePic1, ComponentModel.ISupportInitialize).BeginInit()
@@ -208,8 +208,9 @@ Partial Class TitleScreen
         ' 
         ' easyHighLV
         ' 
-        easyHighLV.Columns.AddRange(New ColumnHeader() {playerCol, completedCol})
+        easyHighLV.Columns.AddRange(New ColumnHeader() {easyPlayerCol, easyCompletedCol})
         easyHighLV.Dock = DockStyle.Fill
+        easyHighLV.FullRowSelect = True
         easyHighLV.Location = New Point(0, 0)
         easyHighLV.Name = "easyHighLV"
         easyHighLV.Size = New Size(424, 243)
@@ -217,16 +218,16 @@ Partial Class TitleScreen
         easyHighLV.UseCompatibleStateImageBehavior = False
         easyHighLV.View = View.Details
         ' 
-        ' playerCol
+        ' easyPlayerCol
         ' 
-        playerCol.Text = "Player Name"
-        playerCol.Width = 208
+        easyPlayerCol.Text = "Player Name"
+        easyPlayerCol.Width = 190
         ' 
-        ' completedCol
+        ' easyCompletedCol
         ' 
-        completedCol.Text = "Time Completed "
-        completedCol.TextAlign = HorizontalAlignment.Right
-        completedCol.Width = 206
+        easyCompletedCol.Text = "Time Completed "
+        easyCompletedCol.TextAlign = HorizontalAlignment.Right
+        easyCompletedCol.Width = 206
         ' 
         ' mediumTab
         ' 
@@ -241,8 +242,9 @@ Partial Class TitleScreen
         ' 
         ' mediumHighLV
         ' 
-        mediumHighLV.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
+        mediumHighLV.Columns.AddRange(New ColumnHeader() {mediumPlayerCol, mediumCompletedCol})
         mediumHighLV.Dock = DockStyle.Fill
+        mediumHighLV.FullRowSelect = True
         mediumHighLV.Location = New Point(0, 0)
         mediumHighLV.Name = "mediumHighLV"
         mediumHighLV.Size = New Size(424, 243)
@@ -250,16 +252,16 @@ Partial Class TitleScreen
         mediumHighLV.UseCompatibleStateImageBehavior = False
         mediumHighLV.View = View.Details
         ' 
-        ' ColumnHeader1
+        ' mediumPlayerCol
         ' 
-        ColumnHeader1.Text = "Player Name"
-        ColumnHeader1.Width = 208
+        mediumPlayerCol.Text = "Player Name"
+        mediumPlayerCol.Width = 190
         ' 
-        ' ColumnHeader2
+        ' mediumCompletedCol
         ' 
-        ColumnHeader2.Text = "Time Completed "
-        ColumnHeader2.TextAlign = HorizontalAlignment.Right
-        ColumnHeader2.Width = 206
+        mediumCompletedCol.Text = "Time Completed "
+        mediumCompletedCol.TextAlign = HorizontalAlignment.Right
+        mediumCompletedCol.Width = 206
         ' 
         ' hardTab
         ' 
@@ -274,8 +276,9 @@ Partial Class TitleScreen
         ' 
         ' hardHighLV
         ' 
-        hardHighLV.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4})
+        hardHighLV.Columns.AddRange(New ColumnHeader() {hardPlayerCol, hardCompletedCol})
         hardHighLV.Dock = DockStyle.Fill
+        hardHighLV.FullRowSelect = True
         hardHighLV.Location = New Point(0, 0)
         hardHighLV.Name = "hardHighLV"
         hardHighLV.Size = New Size(424, 243)
@@ -283,16 +286,16 @@ Partial Class TitleScreen
         hardHighLV.UseCompatibleStateImageBehavior = False
         hardHighLV.View = View.Details
         ' 
-        ' ColumnHeader3
+        ' hardPlayerCol
         ' 
-        ColumnHeader3.Text = "Player Name"
-        ColumnHeader3.Width = 208
+        hardPlayerCol.Text = "Player Name"
+        hardPlayerCol.Width = 190
         ' 
-        ' ColumnHeader4
+        ' hardCompletedCol
         ' 
-        ColumnHeader4.Text = "Time Completed "
-        ColumnHeader4.TextAlign = HorizontalAlignment.Right
-        ColumnHeader4.Width = 206
+        hardCompletedCol.Text = "Time Completed "
+        hardCompletedCol.TextAlign = HorizontalAlignment.Right
+        hardCompletedCol.Width = 206
         ' 
         ' insaneTab
         ' 
@@ -307,8 +310,9 @@ Partial Class TitleScreen
         ' 
         ' insaneHighLV
         ' 
-        insaneHighLV.Columns.AddRange(New ColumnHeader() {ColumnHeader5, ColumnHeader6})
+        insaneHighLV.Columns.AddRange(New ColumnHeader() {insanePlayerCol, insameCompletedCol})
         insaneHighLV.Dock = DockStyle.Fill
+        insaneHighLV.FullRowSelect = True
         insaneHighLV.Location = New Point(0, 0)
         insaneHighLV.Name = "insaneHighLV"
         insaneHighLV.Size = New Size(424, 243)
@@ -316,16 +320,16 @@ Partial Class TitleScreen
         insaneHighLV.UseCompatibleStateImageBehavior = False
         insaneHighLV.View = View.Details
         ' 
-        ' ColumnHeader5
+        ' insanePlayerCol
         ' 
-        ColumnHeader5.Text = "Player Name"
-        ColumnHeader5.Width = 208
+        insanePlayerCol.Text = "Player Name"
+        insanePlayerCol.Width = 190
         ' 
-        ' ColumnHeader6
+        ' insameCompletedCol
         ' 
-        ColumnHeader6.Text = "Time Completed "
-        ColumnHeader6.TextAlign = HorizontalAlignment.Right
-        ColumnHeader6.Width = 206
+        insameCompletedCol.Text = "Time Completed "
+        insameCompletedCol.TextAlign = HorizontalAlignment.Right
+        insameCompletedCol.Width = 206
         ' 
         ' TitleScreen
         ' 
@@ -368,16 +372,16 @@ Partial Class TitleScreen
     Friend WithEvents hardTab As TabPage
     Friend WithEvents insaneTab As TabPage
     Friend WithEvents easyHighLV As ListView
-    Friend WithEvents playerCol As ColumnHeader
-    Friend WithEvents completedCol As ColumnHeader
+    Friend WithEvents easyPlayerCol As ColumnHeader
+    Friend WithEvents easyCompletedCol As ColumnHeader
     Friend WithEvents mediumHighLV As ListView
-    Friend WithEvents ColumnHeader1 As ColumnHeader
-    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents mediumPlayerCol As ColumnHeader
+    Friend WithEvents mediumCompletedCol As ColumnHeader
     Friend WithEvents hardHighLV As ListView
-    Friend WithEvents ColumnHeader3 As ColumnHeader
-    Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents hardPlayerCol As ColumnHeader
+    Friend WithEvents hardCompletedCol As ColumnHeader
     Friend WithEvents insaneHighLV As ListView
-    Friend WithEvents ColumnHeader5 As ColumnHeader
-    Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents insanePlayerCol As ColumnHeader
+    Friend WithEvents insameCompletedCol As ColumnHeader
 
 End Class
