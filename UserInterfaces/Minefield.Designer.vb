@@ -22,16 +22,19 @@ Partial Class Minefield
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Minefield))
         formLayout = New TableLayoutPanel()
         topLayout = New TableLayoutPanel()
         playerLbl = New Label()
         avatarPic = New PictureBox()
         timerLbl = New Label()
+        selectedDiffLbl = New Label()
         gameboardPanel = New Panel()
         bottomLayout = New TableLayoutPanel()
         restartBtn = New Button()
         quitBtn = New Button()
+        scoreTimer = New Timer(components)
         formLayout.SuspendLayout()
         topLayout.SuspendLayout()
         CType(avatarPic, ComponentModel.ISupportInitialize).BeginInit()
@@ -63,12 +66,14 @@ Partial Class Minefield
         topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
         topLayout.Controls.Add(playerLbl, 1, 0)
         topLayout.Controls.Add(avatarPic, 2, 0)
-        topLayout.Controls.Add(timerLbl, 0, 0)
+        topLayout.Controls.Add(timerLbl, 0, 1)
+        topLayout.Controls.Add(selectedDiffLbl, 0, 0)
         topLayout.Dock = DockStyle.Top
         topLayout.Location = New Point(3, 3)
         topLayout.Name = "topLayout"
-        topLayout.RowCount = 1
-        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        topLayout.RowCount = 2
+        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 40F))
+        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 60F))
         topLayout.Size = New Size(430, 90)
         topLayout.TabIndex = 4
         ' 
@@ -78,6 +83,7 @@ Partial Class Minefield
         playerLbl.Font = New Font("Gill Sans Ultra Bold", 19F, FontStyle.Italic)
         playerLbl.Location = New Point(132, 0)
         playerLbl.Name = "playerLbl"
+        topLayout.SetRowSpan(playerLbl, 2)
         playerLbl.Size = New Size(166, 90)
         playerLbl.TabIndex = 0
         playerLbl.Text = "Name Avatar>>"
@@ -87,8 +93,10 @@ Partial Class Minefield
         ' 
         avatarPic.BackColor = Color.Transparent
         avatarPic.Dock = DockStyle.Fill
+        avatarPic.Image = My.Resources.Resources.FBlAva
         avatarPic.Location = New Point(304, 3)
         avatarPic.Name = "avatarPic"
+        topLayout.SetRowSpan(avatarPic, 2)
         avatarPic.Size = New Size(123, 84)
         avatarPic.SizeMode = PictureBoxSizeMode.Zoom
         avatarPic.TabIndex = 2
@@ -96,15 +104,25 @@ Partial Class Minefield
         ' 
         ' timerLbl
         ' 
-        timerLbl.Anchor = AnchorStyles.None
-        timerLbl.AutoSize = True
-        timerLbl.Font = New Font("Gill Sans Ultra Bold", 10F, FontStyle.Italic)
-        timerLbl.Location = New Point(9, 35)
+        timerLbl.Dock = DockStyle.Fill
+        timerLbl.Font = New Font("Gill Sans Ultra Bold", 9F, FontStyle.Italic)
+        timerLbl.Location = New Point(3, 36)
         timerLbl.Name = "timerLbl"
-        timerLbl.Size = New Size(111, 20)
+        timerLbl.Size = New Size(123, 54)
         timerLbl.TabIndex = 3
-        timerLbl.Text = "00:00:00.0"
+        timerLbl.Text = "00:00.00"
         timerLbl.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' selectedDiffLbl
+        ' 
+        selectedDiffLbl.Dock = DockStyle.Fill
+        selectedDiffLbl.Font = New Font("Gill Sans Ultra Bold", 9F, FontStyle.Italic)
+        selectedDiffLbl.Location = New Point(3, 0)
+        selectedDiffLbl.Name = "selectedDiffLbl"
+        selectedDiffLbl.Size = New Size(123, 36)
+        selectedDiffLbl.TabIndex = 4
+        selectedDiffLbl.Text = "[Diff Select]"
+        selectedDiffLbl.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' gameboardPanel
         ' 
@@ -156,6 +174,10 @@ Partial Class Minefield
         quitBtn.TextImageRelation = TextImageRelation.TextBeforeImage
         quitBtn.UseVisualStyleBackColor = True
         ' 
+        ' scoreTimer
+        ' 
+        scoreTimer.Interval = 1000
+        ' 
         ' Minefield
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -171,7 +193,6 @@ Partial Class Minefield
         Text = "Mine Sweeper"
         formLayout.ResumeLayout(False)
         topLayout.ResumeLayout(False)
-        topLayout.PerformLayout()
         CType(avatarPic, ComponentModel.ISupportInitialize).EndInit()
         bottomLayout.ResumeLayout(False)
         ResumeLayout(False)
@@ -186,4 +207,6 @@ Partial Class Minefield
     Friend WithEvents quitBtn As Button
     Friend WithEvents gameboardPanel As Panel
     Friend WithEvents bottomLayout As TableLayoutPanel
+    Friend WithEvents selectedDiffLbl As Label
+    Friend WithEvents scoreTimer As Timer
 End Class

@@ -12,29 +12,23 @@
 Public Class Minefield
 
     Public Sub New()
-        ' This call is required by the designer.
-        InitializeComponent()
-        ' Add any initialization after the InitializeComponent() call.
-    End Sub
 
-
-    Public Sub New(player As Player, Optional mineCount As Integer = 0)
-
-        ' This call is required by the designer.
         InitializeComponent()
 
         Dim gameboard As New Gameboard()
 
-        playerLbl.Text = player.name
-        avatarPic.Image = player.avatar
+        selectedDiffLbl.Text = gameboard.player.difficulty
+        playerLbl.Text = gameboard.player.name
+        avatarPic.Image = gameboard.player.avatar
 
-        'gameboard.mineCount = DetermineMineCount()
+        gameboard.mineCount = DetermineMineCount(gameboard.player.difficulty)
 
 
-
-        ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
+    ''Timer start when first cell changes
+
 
     Private Sub quitBtn_Click(sender As Object, e As EventArgs) Handles quitBtn.Click
 
@@ -47,4 +41,5 @@ Public Class Minefield
         Dim gameboard As New Gameboard()
 
     End Sub
+
 End Class

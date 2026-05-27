@@ -13,7 +13,7 @@ Public Class AvatarSelection
 
     Public avatar As Image
     Public difficulty As String
-    Public player As Player
+    Public player As New Player()
 
     Public Sub New(difficulty As String)
         ' This call is required by the designer.
@@ -22,8 +22,10 @@ Public Class AvatarSelection
 
     Private Sub gameStartBtn_Click(sender As Object, e As EventArgs) Handles gameStartBtn.Click
 
+        Dim selectedAvatar As RadioButton = bodyLayout.Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked)
+
         player.name = playerText.Text
-        player.avatar = bodyLayout.Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked).Image
+        player.avatar = selectedAvatar.Image
         player.difficulty = difficulty
         player.complitionTime = TimeSpan.Zero
 
