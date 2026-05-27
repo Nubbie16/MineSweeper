@@ -15,9 +15,11 @@ Public Class AvatarSelection
     Public difficulty As String
     Public player As New Player()
 
-    Public Sub New(difficulty As String)
+    Public Sub New(selectedDifficulty As String)
         ' This call is required by the designer.
         InitializeComponent()
+
+        difficulty = selectedDifficulty
     End Sub
 
     Private Sub gameStartBtn_Click(sender As Object, e As EventArgs) Handles gameStartBtn.Click
@@ -29,7 +31,7 @@ Public Class AvatarSelection
         player.difficulty = difficulty
         player.complitionTime = TimeSpan.Zero
 
-        Dim minefield As New Minefield()
+        Dim minefield As New Minefield(player)
         minefield.Show()
         Me.Hide()
     End Sub

@@ -11,19 +11,24 @@
 
 Public Class Minefield
 
-    Public Sub New()
+    Public gameboard As Gameboard
+    Dim cellButtons(,) As Button
+
+
+    Public Sub New(currentPlayer As Player)
 
         InitializeComponent()
 
-        Dim gameboard As New Gameboard()
+        gameboard = New Gameboard()
+        gameboard.player = currentPlayer
 
-        selectedDiffLbl.Text = gameboard.player.difficulty
-        playerLbl.Text = gameboard.player.name
-        avatarPic.Image = gameboard.player.avatar
+        selectedDiffLbl.Text = Gameboard.player.difficulty
+        playerLbl.Text = Gameboard.player.name
+        avatarPic.Image = Gameboard.player.avatar
 
-        gameboard.mineCount = DetermineMineCount(gameboard.player.difficulty)
+        Gameboard.mineCount = DetermineMineCount(Gameboard.player.difficulty)
 
-
+        GenerateMinefield(gameboard)
 
     End Sub
 
@@ -38,7 +43,63 @@ Public Class Minefield
     End Sub
 
     Private Sub restartBtn_Click(sender As Object, e As EventArgs) Handles restartBtn.Click
-        Dim gameboard As New Gameboard()
+
+        ''Needed
+
+    End Sub
+
+    Private Sub GenerateMinefield(board As Gameboard)
+
+        Dim rows As Integer = board.horizontalSize
+        Dim cols As Integer = board.verticalSize
+        Dim cellSize As Integer = 34
+
+        Dim boardWidth As Integer = cols * cellSize
+        Dim boardHeight As Integer = rows * cellSize
+
+        Dim startX As Integer = (gameboardPanel.Width - boardWidth) \ 2
+        Dim startY As Integer = (gameboardPanel.Height - boardHeight) \ 2
+
+        gameboardPanel.Controls.Clear()
+        ReDim cellButtons(rows - 1, cols - 1)
+
+        For row As Integer = 0 To rows - 1
+            For col As Integer = 0 To cols - 1
+
+                Dim btn As New Button()
+
+                btn.Width = cellSize
+                btn.Height = cellSize
+                btn.Left = startX + (col * cellSize)
+                btn.Top = startY + (row * cellSize)
+                btn.Margin = New Padding(0)
+                btn.Tag = New Point(row, col)
+
+                btn.FlatStyle = FlatStyle.Flat
+                btn.BackgroundImageLayout = ImageLayout.Zoom
+
+                AddHandler btn.MouseUp, AddressOf Cell_MouseUp
+
+                cellButtons(row, col) = btn
+                gameboardPanel.Controls.Add(btn)
+
+            Next
+        Next
+
+    End Sub
+
+    Private Sub Cell_MouseUp(sender As Object, e As MouseEventArgs)
+        Dim btn As Button = CType(sender, Button)
+        Dim location As Point = CType(btn.Tag, Point)
+
+        Dim row As Integer = location.X
+        Dim col As Integer = location.Y
+
+        If e.Button = MouseButtons.Left Then
+            'reveal cell
+        ElseIf e.Button = MouseButtons.Right Then
+            'Flag Cell
+        End If
 
     End Sub
 

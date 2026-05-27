@@ -93,7 +93,6 @@ Partial Class Minefield
         ' 
         avatarPic.BackColor = Color.Transparent
         avatarPic.Dock = DockStyle.Fill
-        avatarPic.Image = My.Resources.Resources.FBlAva
         avatarPic.Location = New Point(304, 3)
         avatarPic.Name = "avatarPic"
         topLayout.SetRowSpan(avatarPic, 2)
@@ -126,7 +125,6 @@ Partial Class Minefield
         ' 
         ' gameboardPanel
         ' 
-        gameboardPanel.BackgroundImage = CType(resources.GetObject("gameboardPanel.BackgroundImage"), Image)
         gameboardPanel.BackgroundImageLayout = ImageLayout.Zoom
         gameboardPanel.Dock = DockStyle.Fill
         gameboardPanel.Location = New Point(3, 99)
