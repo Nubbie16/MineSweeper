@@ -34,5 +34,10 @@ Module GameLogic
         Return mineCount
     End Function
 
+    Public Sub DetermineFieldNumbers(board As Gameboard)
+
+
+
+    End Sub
 
 End Module

@@ -12,7 +12,6 @@
 Public Class Minefield
 
     Public gameboard As Gameboard
-    Dim cellButtons(,) As Button
 
     Public Sub New(currentPlayer As Player)
 
@@ -27,7 +26,7 @@ Public Class Minefield
 
         Gameboard.mineCount = DetermineMineCount(Gameboard.player.difficulty)
 
-        GenerateGrid(gameboard, cellButtons, gameboardPanel,
+        GenerateGrid(gameboard, gameboardPanel,
                      AddressOf Cell_MouseUp)                    'Creates the base grid layout
 
         gameboard.placedMinefield = PlaceMines(gameboard)

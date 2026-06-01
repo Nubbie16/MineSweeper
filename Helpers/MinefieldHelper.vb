@@ -15,7 +15,7 @@ Module MinefieldHelper
     ''Live code for RNG
     'Private RNG As New Random()
 
-    Public Sub GenerateGrid(board As Gameboard, ByRef cellBtns(,) As Button, boardPanel As Control, mouseHandler As MouseEventHandler)
+    Public Sub GenerateGrid(board As Gameboard, boardPanel As Control, mouseHandler As MouseEventHandler)
 
         Dim rows As Integer = board.horizontalSize
         Dim cols As Integer = board.verticalSize
@@ -49,7 +49,6 @@ Module MinefieldHelper
 
                 cellBtns(row, col) = btn
                 boardPanel.Controls.Add(btn)
-
             Next
         Next
     End Sub
@@ -73,5 +72,9 @@ Module MinefieldHelper
         Return placedMineGrid
 
     End Function
+
+    Public Sub ProximityHelper(board As Gameboard)
+
+    End Sub
 
 End Module
