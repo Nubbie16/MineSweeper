@@ -8,6 +8,13 @@
 
 Module MinefieldHelper
 
+    ''Fixed seed for testing and debugging. DELETE/COMMENT OUT on live
+    Private seed As Integer = 12345
+    Private RNG As New Random(seed)
+
+    ''Live code for RNG
+    'Private RNG As New Random()
+
     Public Sub GenerateGrid(board As Gameboard, ByRef cellBtns(,) As Button, boardPanel As Control, mouseHandler As MouseEventHandler)
 
         Dim rows As Integer = board.horizontalSize
@@ -45,7 +52,26 @@ Module MinefieldHelper
 
             Next
         Next
-
     End Sub
+
+    Public Function PlaceMines(board As Gameboard) As Boolean(,)
+
+        Dim placedMineGrid(board.horizontalSize - 1, board.verticalSize - 1) As Boolean
+        Dim minesPlaced As Integer = 0
+
+        While minesPlaced < board.mineCount
+
+            Dim randomX As Integer = RNG.Next(0, board.horizontalSize)
+            Dim randomY As Integer = RNG.Next(0, board.verticalSize)
+
+            If placedMineGrid(randomX, randomY) = False Then
+                placedMineGrid(randomX, randomY) = True
+                minesPlaced += 1
+            End If
+        End While
+
+        Return placedMineGrid
+
+    End Function
 
 End Module

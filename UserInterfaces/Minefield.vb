@@ -14,7 +14,6 @@ Public Class Minefield
     Public gameboard As Gameboard
     Dim cellButtons(,) As Button
 
-
     Public Sub New(currentPlayer As Player)
 
         InitializeComponent()
@@ -28,9 +27,16 @@ Public Class Minefield
 
         Gameboard.mineCount = DetermineMineCount(Gameboard.player.difficulty)
 
-        GenerateGrid(gameboard, cellButtons, gameboardPanel, AddressOf Cell_MouseUp)
+        GenerateGrid(gameboard, cellButtons, gameboardPanel,
+                     AddressOf Cell_MouseUp)                    'Creates the base grid layout
+
+        gameboard.placedMinefield = PlaceMines(gameboard)
 
     End Sub
+
+
+
+
 
     ''Timer start when first cell changes
 

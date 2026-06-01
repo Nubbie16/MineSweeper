@@ -9,9 +9,10 @@
 
 Public Class Gameboard
 
-    Public Property verticalSize As Integer = 11
     Public Property horizontalSize As Integer = 8
+    Public Property verticalSize As Integer = 11
     Public Property mineCount As Integer
+    Public Property placedMinefield As Boolean(,)
     Public Property player As Player
 
 
