@@ -14,18 +14,20 @@ Public Class Gameboard
     Public Property mineCount As Integer
     Public Property player As Player
 
+    'The blank grid field that is associated with the provided
+    'vertical and horizontal sizes(proactive for future updates on
+    'selecting different diminsons)
     Public Property cellGrid As Button(,)
-    Public Property placedMinefield As Boolean(,)
-    Public Property revealedGrid As Boolean(,)
-    Public Property flaggedGrid As Boolean(,)
-    Public Property nearbyMineCounts As Integer(,)
 
-    Public Sub InitializeBoard()
-        ReDim placedMinefield(horizontalSize - 1, verticalSize - 1)
-        ReDim revealedGrid(horizontalSize - 1, verticalSize - 1)
-        ReDim flaggedGrid(horizontalSize - 1, verticalSize - 1)
-        ReDim nearbyMineCounts(horizontalSize - 1, verticalSize - 1)
-    End Sub
+    Public Property placedMines As Boolean(,)
+    Public Property placedMineGrid As Button(,)
+
+    Public Property flaggedGrid As Boolean(,)
+
+    Public Property placedProximityNums As Integer(,)
+    Public Property proximityGrid As Button(,)
+
+    Public Property revealedGrid As Button(,)
 
     Public Function IsInsideBoard(x As Integer, y As Integer) As Boolean
         Return x >= 0 AndAlso x < horizontalSize AndAlso y >= 0 AndAlso y < verticalSize

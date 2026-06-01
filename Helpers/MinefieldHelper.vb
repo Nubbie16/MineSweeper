@@ -17,8 +17,8 @@ Module MinefieldHelper
 
     Public Sub GenerateGrid(board As Gameboard, boardPanel As Control, mouseHandler As MouseEventHandler)
 
-        Dim rows As Integer = board.horizontalSize
-        Dim cols As Integer = board.verticalSize
+        Dim rows As Integer = board.verticalSize
+        Dim cols As Integer = board.horizontalSize
         Dim cellSize As Integer = 34
 
         Dim boardWidth As Integer = cols * cellSize
@@ -28,7 +28,7 @@ Module MinefieldHelper
         Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
 
         boardPanel.Controls.Clear()
-        ReDim cellBtns(rows - 1, cols - 1)
+        ReDim board.cellGrid(rows - 1, cols - 1)
 
         For row As Integer = 0 To rows - 1
             For col As Integer = 0 To cols - 1
@@ -47,13 +47,13 @@ Module MinefieldHelper
 
                 AddHandler btn.MouseUp, mouseHandler
 
-                cellBtns(row, col) = btn
+                board.cellGrid(row, col) = btn
                 boardPanel.Controls.Add(btn)
             Next
         Next
     End Sub
 
-    Public Function PlaceMines(board As Gameboard) As Boolean(,)
+    Public Sub PlaceMines(board As Gameboard)
 
         Dim placedMineGrid(board.horizontalSize - 1, board.verticalSize - 1) As Boolean
         Dim minesPlaced As Integer = 0
@@ -69,12 +69,47 @@ Module MinefieldHelper
             End If
         End While
 
-        Return placedMineGrid
+        board.placedMines = placedMineGrid
+
+    End Sub
+
+    'Looks at all surrounding cells for mines and tracks the number
+    Public Function ProximityHelper(board As Gameboard, currentX As Integer, currentY As Integer) As Integer
+
+        Dim proxCount As Integer = 0
+
+        Dim xOffsets() As Integer = {-1, 0, 1, -1, 1, -1, 0, 1}
+        Dim yOffsets() As Integer = {-1, -1, -1, 0, 0, 1, 1, 1}
+        Dim checkX As Integer = Nothing
+        Dim checkY As Integer = Nothing
+
+        For subset As Integer = 0 To xOffsets.Length - 1
+            checkX = currentX + xOffsets(subset)
+            checkY = currentY + yOffsets(subset)
+
+            If board.IsInsideBoard(checkX, checkY) Then
+                If board.placedMines(checkX, checkY) Then
+                    proxCount += 1
+                End If
+            End If
+        Next
+
+        Return proxCount
 
     End Function
 
-    Public Sub ProximityHelper(board As Gameboard)
+    Public Sub GenerateMinePlacement(board As Gameboard)
+        Dim mineGrid As Button(,)
 
+
+        board.placedMineGrid = mineGrid
+    End Sub
+
+    Public Sub GenerateProximityPlacement(board As Gameboard)
+        Dim proxGrid As Button(,)
+
+
+        board.proximityGrid = proxGrid
     End Sub
 
 End Module

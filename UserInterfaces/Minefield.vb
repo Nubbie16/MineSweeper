@@ -12,6 +12,8 @@
 Public Class Minefield
 
     Public gameboard As Gameboard
+    Public fullMinefield As Button(,)
+
 
     Public Sub New(currentPlayer As Player)
 
@@ -26,10 +28,13 @@ Public Class Minefield
 
         Gameboard.mineCount = DetermineMineCount(Gameboard.player.difficulty)
 
-        GenerateGrid(gameboard, gameboardPanel,
-                     AddressOf Cell_MouseUp)                    'Creates the base grid layout
+        GenerateGrid(gameboard, gameboardPanel, AddressOf Cell_MouseUp)       'Creates the base grid layout
 
-        gameboard.placedMinefield = PlaceMines(gameboard)
+        PlaceMines(gameboard)                                           'Stores mine placement in gameboard
+
+        DetermineFieldNumbers(gameboard)                                'Stores proximity numbers in gameboard
+
+        GenerateMinefield(gameboard)                                    '
 
     End Sub
 
@@ -65,6 +70,16 @@ Public Class Minefield
         ElseIf e.Button = MouseButtons.Right Then
             'Flag Cell
         End If
+
+    End Sub
+
+    Private Sub GenerateMinefield(board As Gameboard)
+        Dim fullGrid As Button(,)
+
+        GenerateMinePlacement(board)
+        GenerateProximityPlacement(board)
+
+        board.revealedGrid = fullGrid
 
     End Sub
 

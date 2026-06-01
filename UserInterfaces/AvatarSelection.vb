@@ -29,7 +29,7 @@ Public Class AvatarSelection
         player.name = playerText.Text
         player.avatar = selectedAvatar.Image
         player.difficulty = difficulty
-        player.complitionTime = TimeSpan.Zero
+        player.completionTime = TimeSpan.Zero
 
         Dim minefield As New Minefield(player)
         minefield.Show()

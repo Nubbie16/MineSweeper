@@ -36,8 +36,20 @@ Module GameLogic
 
     Public Sub DetermineFieldNumbers(board As Gameboard)
 
+        Dim proximityCount As Integer = 0
 
+        For x As Integer = 0 To board.horizontalSize - 1
+            For y As Integer = 0 To board.verticalSize - 1
+                If board.placedMines(x, y) Then             'If cell has a placed mine
+                    Return
+                ElseIf board.placedMines(x, y) = False Then
 
+                    proximityCount = ProximityHelper(board, x, y)
+                    board.PlacedProximityNums(x, y) = proximityCount
+
+                End If
+            Next
+        Next
     End Sub
 
 End Module
