@@ -26,15 +26,15 @@ Public Class Minefield
         playerLbl.Text = Gameboard.player.name
         avatarPic.Image = Gameboard.player.avatar
 
-        Gameboard.mineCount = DetermineMineCount(Gameboard.player.difficulty)
+        gameboard.mineCount = DetermineMineCount(gameboard.player.difficulty)
 
         GenerateGrid(gameboard, gameboardPanel, AddressOf Cell_MouseUp)       'Creates the base grid layout
 
-        PlaceMines(gameboard)                                           'Stores mine placement in gameboard
+        PlaceMines(gameboard)                                     'Stores mine placement in gameboard
 
-        DetermineFieldNumbers(gameboard)                                'Stores proximity numbers in gameboard
+        DetermineFieldNumbers(gameboard)                          'Stores proximity numbers in gameboard
 
-        GenerateMinefield(gameboard)                                    '
+        GenerateRevealedMinefield(gameboard, gameboardPanel)              ' Creates revealed minefield with mines and proximity numbers
 
     End Sub
 
@@ -73,13 +73,13 @@ Public Class Minefield
 
     End Sub
 
-    Private Sub GenerateMinefield(board As Gameboard)
-        Dim fullGrid As Button(,)
+    Public Sub GenerateRevealedMinefield(board As Gameboard, boardPanel As Control)
 
-        GenerateMinePlacement(board)
-        GenerateProximityPlacement(board)
+        GenerateMinePlacement(board, boardPanel)
+        GenerateProximityPlacement(board, boardPanel)
 
-        board.revealedGrid = fullGrid
+
+
 
     End Sub
 

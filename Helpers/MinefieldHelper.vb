@@ -17,8 +17,8 @@ Module MinefieldHelper
 
     Public Sub GenerateGrid(board As Gameboard, boardPanel As Control, mouseHandler As MouseEventHandler)
 
-        Dim rows As Integer = board.verticalSize
-        Dim cols As Integer = board.horizontalSize
+        Dim rows As Integer = board.horizontalSize
+        Dim cols As Integer = board.verticalSize
         Dim cellSize As Integer = 34
 
         Dim boardWidth As Integer = cols * cellSize
@@ -52,6 +52,85 @@ Module MinefieldHelper
             Next
         Next
     End Sub
+
+    Public Sub GenerateMinePlacement(board As Gameboard, boardPanel As Control)
+
+        Dim rows As Integer = board.horizontalSize
+        Dim cols As Integer = board.verticalSize
+        Dim cellSize As Integer = 34
+
+        Dim boardWidth As Integer = cols * cellSize
+        Dim boardHeight As Integer = rows * cellSize
+
+        Dim startX As Integer = (boardPanel.Width - boardWidth) \ 2
+        Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
+
+        boardPanel.Controls.Clear()
+        ReDim board.cellGrid(rows - 1, cols - 1)
+
+        For row As Integer = 0 To rows - 1
+            For col As Integer = 0 To cols - 1
+                Dim btn As New Button()
+
+                btn.Width = cellSize
+                btn.Height = cellSize
+                btn.Left = startX + (col * cellSize)
+                btn.Top = startY + (row * cellSize)
+                btn.Margin = New Padding(0)
+                btn.Tag = New Point(row, col)
+
+                btn.FlatStyle = FlatStyle.Flat
+                btn.BackgroundImageLayout = ImageLayout.Zoom
+
+                If board.placedMines(row, col) Then
+                    btn.BackgroundImage = My.Resources.Mine
+                End If
+
+                board.cellGrid(row, col) = btn
+                boardPanel.Controls.Add(btn)
+            Next
+        Next
+
+    End Sub
+
+    Public Sub GenerateProximityPlacement(board As Gameboard, boardPanel As Control)
+        Dim rows As Integer = board.horizontalSize
+        Dim cols As Integer = board.verticalSize
+        Dim cellSize As Integer = 34
+
+        Dim boardWidth As Integer = cols * cellSize
+        Dim boardHeight As Integer = rows * cellSize
+
+        Dim startX As Integer = (boardPanel.Width - boardWidth) \ 2
+        Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
+
+        boardPanel.Controls.Clear()
+        ReDim board.cellGrid(rows - 1, cols - 1)
+
+        For row As Integer = 0 To rows - 1
+            For col As Integer = 0 To cols - 1
+                Dim btn As New Button()
+
+                btn.Width = cellSize
+                btn.Height = cellSize
+                btn.Left = startX + (col * cellSize)
+                btn.Top = startY + (row * cellSize)
+                btn.Margin = New Padding(0)
+                btn.Tag = New Point(row, col)
+
+                btn.FlatStyle = FlatStyle.Flat
+                btn.BackgroundImageLayout = ImageLayout.Zoom
+
+                If board.placedProximityNums(row, col) > 0 Then
+                    btn.Text = board.placedProximityNums(row, col).ToString()
+                End If
+
+                board.cellGrid(row, col) = btn
+                boardPanel.Controls.Add(btn)
+            Next
+        Next
+    End Sub
+
 
     Public Sub PlaceMines(board As Gameboard)
 
@@ -97,19 +176,5 @@ Module MinefieldHelper
         Return proxCount
 
     End Function
-
-    Public Sub GenerateMinePlacement(board As Gameboard)
-        Dim mineGrid As Button(,)
-
-
-        board.placedMineGrid = mineGrid
-    End Sub
-
-    Public Sub GenerateProximityPlacement(board As Gameboard)
-        Dim proxGrid As Button(,)
-
-
-        board.proximityGrid = proxGrid
-    End Sub
 
 End Module
