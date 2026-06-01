@@ -62,7 +62,7 @@ Public Class Minefield
         Dim btn As Button = CType(sender, Button)
         Dim location As Point = CType(btn.Tag, Point)
 
-        Dim col As Integer = location.X
+        Dim ccol As Integer = location.X
         Dim row As Integer = location.Y
 
         If e.Button = MouseButtons.Left Then
