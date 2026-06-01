@@ -17,37 +17,37 @@ Module MinefieldHelper
 
     Public Sub GenerateGrid(board As Gameboard, boardPanel As Control, mouseHandler As MouseEventHandler)
 
-        Dim rows As Integer = board.horizontalSize
-        Dim cols As Integer = board.verticalSize
+        Dim cols As Integer = board.horizontalSize
+        Dim rows As Integer = board.verticalSize
         Dim cellSize As Integer = 34
 
-        Dim boardWidth As Integer = cols * cellSize
-        Dim boardHeight As Integer = rows * cellSize
+        Dim boardWidth As Integer = rows * cellSize
+        Dim boardHeight As Integer = cols * cellSize
 
         Dim startX As Integer = (boardPanel.Width - boardWidth) \ 2
         Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
 
         boardPanel.Controls.Clear()
-        ReDim board.cellGrid(rows - 1, cols - 1)
+        ReDim board.cellGrid(cols - 1, rows - 1)
 
-        For row As Integer = 0 To rows - 1
-            For col As Integer = 0 To cols - 1
+        For col As Integer = 0 To cols - 1
+            For row As Integer = 0 To rows - 1
 
                 Dim btn As New Button()
 
                 btn.Width = cellSize
                 btn.Height = cellSize
-                btn.Left = startX + (col * cellSize)
-                btn.Top = startY + (row * cellSize)
+                btn.Left = startX + (row * cellSize)
+                btn.Top = startY + (col * cellSize)
                 btn.Margin = New Padding(0)
-                btn.Tag = New Point(row, col)
+                btn.Tag = New Point(col, row)
 
                 btn.FlatStyle = FlatStyle.Flat
                 btn.BackgroundImageLayout = ImageLayout.Zoom
 
                 AddHandler btn.MouseUp, mouseHandler
 
-                board.cellGrid(row, col) = btn
+                board.cellGrid(col, row) = btn
                 boardPanel.Controls.Add(btn)
             Next
         Next
@@ -55,38 +55,38 @@ Module MinefieldHelper
 
     Public Sub GenerateMinePlacement(board As Gameboard, boardPanel As Control)
 
-        Dim rows As Integer = board.horizontalSize
-        Dim cols As Integer = board.verticalSize
+        Dim cols As Integer = board.horizontalSize
+        Dim rows As Integer = board.verticalSize
         Dim cellSize As Integer = 34
 
-        Dim boardWidth As Integer = cols * cellSize
-        Dim boardHeight As Integer = rows * cellSize
+        Dim boardWidth As Integer = rows * cellSize
+        Dim boardHeight As Integer = cols * cellSize
 
         Dim startX As Integer = (boardPanel.Width - boardWidth) \ 2
         Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
 
         boardPanel.Controls.Clear()
-        ReDim board.cellGrid(rows - 1, cols - 1)
+        ReDim board.cellGrid(cols - 1, rows - 1)
 
-        For row As Integer = 0 To rows - 1
-            For col As Integer = 0 To cols - 1
+        For col As Integer = 0 To cols - 1
+            For row As Integer = 0 To rows - 1
                 Dim btn As New Button()
 
                 btn.Width = cellSize
                 btn.Height = cellSize
-                btn.Left = startX + (col * cellSize)
-                btn.Top = startY + (row * cellSize)
+                btn.Left = startX + (row * cellSize)
+                btn.Top = startY + (col * cellSize)
                 btn.Margin = New Padding(0)
-                btn.Tag = New Point(row, col)
+                btn.Tag = New Point(col, row)
 
                 btn.FlatStyle = FlatStyle.Flat
                 btn.BackgroundImageLayout = ImageLayout.Zoom
 
-                If board.placedMines(row, col) Then
+                If board.placedMines(col, row) Then
                     btn.BackgroundImage = My.Resources.Mine
                 End If
 
-                board.cellGrid(row, col) = btn
+                board.cellGrid(col, row) = btn
                 boardPanel.Controls.Add(btn)
             Next
         Next
@@ -94,38 +94,38 @@ Module MinefieldHelper
     End Sub
 
     Public Sub GenerateProximityPlacement(board As Gameboard, boardPanel As Control)
-        Dim rows As Integer = board.horizontalSize
-        Dim cols As Integer = board.verticalSize
+        Dim cols As Integer = board.horizontalSize
+        Dim rows As Integer = board.verticalSize
         Dim cellSize As Integer = 34
 
-        Dim boardWidth As Integer = cols * cellSize
-        Dim boardHeight As Integer = rows * cellSize
+        Dim boardWidth As Integer = rows * cellSize
+        Dim boardHeight As Integer = cols * cellSize
 
         Dim startX As Integer = (boardPanel.Width - boardWidth) \ 2
         Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
 
         boardPanel.Controls.Clear()
-        ReDim board.cellGrid(rows - 1, cols - 1)
+        ReDim board.cellGrid(cols - 1, rows - 1)
 
-        For row As Integer = 0 To rows - 1
-            For col As Integer = 0 To cols - 1
+        For col As Integer = 0 To cols - 1
+            For row As Integer = 0 To rows - 1
                 Dim btn As New Button()
 
                 btn.Width = cellSize
                 btn.Height = cellSize
-                btn.Left = startX + (col * cellSize)
-                btn.Top = startY + (row * cellSize)
+                btn.Left = startX + (row * cellSize)
+                btn.Top = startY + (col * cellSize)
                 btn.Margin = New Padding(0)
-                btn.Tag = New Point(row, col)
+                btn.Tag = New Point(col, row)
 
                 btn.FlatStyle = FlatStyle.Flat
                 btn.BackgroundImageLayout = ImageLayout.Zoom
 
-                If board.placedProximityNums(row, col) > 0 Then
-                    btn.Text = board.placedProximityNums(row, col).ToString()
+                If board.placedProximityNums(col, row) > 0 Then
+                    btn.Text = board.placedProximityNums(col, row).ToString()
                 End If
 
-                board.cellGrid(row, col) = btn
+                board.cellGrid(col, row) = btn
                 boardPanel.Controls.Add(btn)
             Next
         Next
