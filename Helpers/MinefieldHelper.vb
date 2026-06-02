@@ -15,6 +15,7 @@ Module MinefieldHelper
 
     Public Sub GenerateGrid(board As Gameboard, boardPanel As Control, mouseHandler As MouseEventHandler)
 
+
         Dim cols As Integer = board.horizontalSize
         Dim rows As Integer = board.verticalSize
         Dim cellSize As Integer = 34
@@ -49,6 +50,9 @@ Module MinefieldHelper
                 boardPanel.Controls.Add(btn)
             Next
         Next
+
+        ReDim board.revealedCells(board.horizontalSize - 1, board.verticalSize - 1)
+
     End Sub
 
     Public Sub ShowRevealedMinefield(board As Gameboard, boardPanel As Control)
@@ -158,19 +162,17 @@ Module MinefieldHelper
 
     Public Sub RevealEmptyTile(board As Gameboard, x As Integer, y As Integer)
 
-        ReDim board.revealedCells(board.horizontalSize - 1, board.verticalSize - 1)
-
         If board.IsInsideBoard(x, y) = False Then
             Exit Sub
         End If
 
-        'If board.placedMines(x, y) Then
-        '    Exit Sub
-        'End If
+        If board.placedMines(x, y) Then
+            Exit Sub
+        End If
 
-        'If board.revealedCells(x, y) Then
-        '    Exit Sub
-        'End If
+        If board.revealedCells(x, y) Then
+            Exit Sub
+        End If
 
         board.revealedCells(x, y) = True
 
@@ -180,14 +182,11 @@ Module MinefieldHelper
         End If
 
         For subset As Integer = 0 To xOffsets.Length - 1
-            If board.IsInsideBoard(x, y) = False Then
-                Exit Sub
-            Else
-                Dim checkX As Integer = x + xOffsets(subset)
-                Dim checkY As Integer = y + yOffsets(subset)
 
-                RevealEmptyTile(board, checkX, checkY)
-            End If
+            Dim checkX As Integer = x + xOffsets(subset)
+            Dim checkY As Integer = y + yOffsets(subset)
+
+            RevealEmptyTile(board, checkX, checkY)
         Next
 
 
