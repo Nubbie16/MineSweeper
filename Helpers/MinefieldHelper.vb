@@ -225,8 +225,6 @@ Module MinefieldHelper
 
             RevealEmptyTile(board, checkX, checkY)
         Next
-
-
     End Sub
 
 

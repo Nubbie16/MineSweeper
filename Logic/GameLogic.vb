@@ -29,4 +29,14 @@ Module GameLogic
 
     End Sub
 
+
+    Public Sub PlaceFlag(board As Gameboard, x As Integer, y As Integer)
+        If board.IsInsideBoard(x, y) Then
+            board.flaggedGrid(x, y) = True
+            board.cellGrid(x, y).BackgroundImage = My.Resources.Flag32
+            board.remainingMines -= 1
+
+        End If
+
+    End Sub
 End Module

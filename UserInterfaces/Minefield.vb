@@ -25,6 +25,7 @@ Public Class Minefield
         avatarPic.Image = Gameboard.player.avatar
 
         gameboard.mineCount = gameboard.DetermineMineCount(gameboard.player.difficulty)
+        remainingMinesLbl.Text = "Mines Left: " & gameboard.mineCount.ToString()
 
         InitializeMinefield()
 
@@ -65,7 +66,7 @@ Public Class Minefield
         If e.Button = MouseButtons.Left Then
             RevealTile(gameboard, col, row)
         ElseIf e.Button = MouseButtons.Right Then
-            'Flag Cell
+            PlaceFlag(gameboard, col, row)
         End If
 
     End Sub
@@ -88,4 +89,10 @@ Public Class Minefield
         Next
     End Sub
 
+    Private Sub Minefield_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
+        If e.Button = MouseButtons.Right Then
+            remainingMinesLbl.Text = "Mines Left: " & gameboard.remainingMines.ToString()
+        End If
+
+    End Sub
 End Class
