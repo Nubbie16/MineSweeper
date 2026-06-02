@@ -162,7 +162,7 @@ Partial Class Minefield
         ' 
         quitBtn.Dock = DockStyle.Fill
         quitBtn.Font = New Font("Gill Sans Ultra Bold", 11.25F, FontStyle.Italic)
-        quitBtn.Image = CType(resources.GetObject("quitBtn.Image"), Image)
+        quitBtn.Image = My.Resources.Resources.Detonated48
         quitBtn.Location = New Point(218, 3)
         quitBtn.Name = "quitBtn"
         quitBtn.Size = New Size(209, 57)

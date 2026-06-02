@@ -83,7 +83,7 @@ Module MinefieldHelper
                 btn.BackgroundImageLayout = ImageLayout.Zoom
 
                 If board.placedMines(ccol, row) Then
-                    btn.BackgroundImage = My.Resources.Mine
+                    ''   btn.BackgroundImage = My.Resources.Mine
                 End If
 
                 board.cellGrid(ccol, row) = btn

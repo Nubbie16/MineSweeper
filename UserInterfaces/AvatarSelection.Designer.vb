@@ -88,7 +88,7 @@ Partial Class AvatarSelection
         ' 
         titlePic1.BackColor = Color.Transparent
         titlePic1.Dock = DockStyle.Fill
-        titlePic1.Image = My.Resources.Resources.Flag
+        titlePic1.Image = My.Resources.Resources.Flag88
         titlePic1.Location = New Point(3, 3)
         titlePic1.Name = "titlePic1"
         titlePic1.Size = New Size(123, 94)
@@ -111,7 +111,7 @@ Partial Class AvatarSelection
         ' 
         titlePic2.BackColor = Color.Transparent
         titlePic2.Dock = DockStyle.Fill
-        titlePic2.Image = My.Resources.Resources.Detonated
+        titlePic2.Image = My.Resources.Resources.Detonated88
         titlePic2.Location = New Point(304, 3)
         titlePic2.Name = "titlePic2"
         titlePic2.Size = New Size(123, 94)
@@ -205,7 +205,7 @@ Partial Class AvatarSelection
         femaleBrownRad.AutoSize = True
         femaleBrownRad.BackColor = SystemColors.Control
         femaleBrownRad.Dock = DockStyle.Fill
-        femaleBrownRad.Image = My.Resources.Resources.FBrAva
+        femaleBrownRad.Image = My.Resources.Resources.FBrAva88
         femaleBrownRad.Location = New Point(289, 165)
         femaleBrownRad.Name = "femaleBrownRad"
         femaleBrownRad.Size = New Size(138, 117)
@@ -219,7 +219,7 @@ Partial Class AvatarSelection
         femaleRedRad.AutoSize = True
         femaleRedRad.BackColor = SystemColors.Control
         femaleRedRad.Dock = DockStyle.Fill
-        femaleRedRad.Image = My.Resources.Resources.FRedAva
+        femaleRedRad.Image = My.Resources.Resources.FRedAva88
         femaleRedRad.Location = New Point(146, 165)
         femaleRedRad.Name = "femaleRedRad"
         femaleRedRad.Size = New Size(137, 117)
@@ -233,7 +233,7 @@ Partial Class AvatarSelection
         femaleBlondeRad.AutoSize = True
         femaleBlondeRad.BackColor = SystemColors.Control
         femaleBlondeRad.Dock = DockStyle.Fill
-        femaleBlondeRad.Image = My.Resources.Resources.FBlAva
+        femaleBlondeRad.Image = My.Resources.Resources.FBlAva88
         femaleBlondeRad.Location = New Point(3, 165)
         femaleBlondeRad.Name = "femaleBlondeRad"
         femaleBlondeRad.Size = New Size(137, 117)
@@ -247,7 +247,7 @@ Partial Class AvatarSelection
         maleBrownRad.AutoSize = True
         maleBrownRad.BackColor = SystemColors.Control
         maleBrownRad.Dock = DockStyle.Fill
-        maleBrownRad.Image = My.Resources.Resources.MBrAva
+        maleBrownRad.Image = My.Resources.Resources.MBrAva88
         maleBrownRad.Location = New Point(289, 43)
         maleBrownRad.Name = "maleBrownRad"
         maleBrownRad.Size = New Size(138, 116)
@@ -261,7 +261,7 @@ Partial Class AvatarSelection
         maleRedRad.AutoSize = True
         maleRedRad.BackColor = SystemColors.Control
         maleRedRad.Dock = DockStyle.Fill
-        maleRedRad.Image = My.Resources.Resources.MRedAva
+        maleRedRad.Image = My.Resources.Resources.MRedAva88
         maleRedRad.Location = New Point(146, 43)
         maleRedRad.Name = "maleRedRad"
         maleRedRad.Size = New Size(137, 116)
@@ -288,7 +288,7 @@ Partial Class AvatarSelection
         maleBlondeRad.AutoSize = True
         maleBlondeRad.BackColor = SystemColors.Control
         maleBlondeRad.Dock = DockStyle.Fill
-        maleBlondeRad.Image = CType(resources.GetObject("maleBlondeRad.Image"), Image)
+        maleBlondeRad.Image = My.Resources.Resources.MBlAva88
         maleBlondeRad.Location = New Point(3, 43)
         maleBlondeRad.Name = "maleBlondeRad"
         maleBlondeRad.Size = New Size(137, 116)

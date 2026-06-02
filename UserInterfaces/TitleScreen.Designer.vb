@@ -99,7 +99,7 @@ Partial Class TitleScreen
         ' 
         titlePic1.BackColor = Color.Transparent
         titlePic1.Dock = DockStyle.Fill
-        titlePic1.Image = My.Resources.Resources.Flag
+        titlePic1.Image = My.Resources.Resources.Flag88
         titlePic1.Location = New Point(3, 3)
         titlePic1.Name = "titlePic1"
         titlePic1.Size = New Size(123, 94)
@@ -122,7 +122,7 @@ Partial Class TitleScreen
         ' 
         titlePic2.BackColor = Color.Transparent
         titlePic2.Dock = DockStyle.Fill
-        titlePic2.Image = My.Resources.Resources.Detonated
+        titlePic2.Image = My.Resources.Resources.Detonated88
         titlePic2.Location = New Point(304, 3)
         titlePic2.Name = "titlePic2"
         titlePic2.Size = New Size(125, 94)
