@@ -12,8 +12,6 @@
 Public Class Minefield
 
     Public gameboard As Gameboard
-    Public fullMinefield As Button(,)
-
 
     Public Sub New(currentPlayer As Player)
 
@@ -26,20 +24,19 @@ Public Class Minefield
         playerLbl.Text = Gameboard.player.name
         avatarPic.Image = Gameboard.player.avatar
 
-        gameboard.mineCount = DetermineMineCount(gameboard.player.difficulty)
+        gameboard.mineCount = gameboard.DetermineMineCount(gameboard.player.difficulty)
 
-        GenerateGrid(gameboard, gameboardPanel, AddressOf Cell_MouseUp)       'Creates the base grid layout
-
-        PlaceMines(gameboard)                                     'Stores mine placement in gameboard
-
-        DetermineFieldNumbers(gameboard)                          'Stores proximity numbers in gameboard
-
-        ShowRevealedMinefield(gameboard, gameboardPanel)              ' Creates revealed minefield with mines and proximity numbers
+        InitializeMinefield()
 
     End Sub
 
+    Private Sub InitializeMinefield()
 
+        GenerateGrid(gameboard, gameboardPanel, AddressOf Cell_MouseUp)       'Creates the base grid layout
+        PlaceMines(gameboard)                                     'Stores mine placement in gameboard
+        DetermineFieldNumbers(gameboard)                          'Stores proximity numbers in gameboard
 
+    End Sub
 
 
     ''Timer start when first cell changes
@@ -54,7 +51,7 @@ Public Class Minefield
 
     Private Sub restartBtn_Click(sender As Object, e As EventArgs) Handles restartBtn.Click
 
-        ''Needed
+        InitializeMinefield()
 
     End Sub
 
@@ -66,7 +63,7 @@ Public Class Minefield
         Dim row As Integer = location.Y
 
         If e.Button = MouseButtons.Left Then
-            'reveal cell
+            RevealTile(gameboard, col, row)
         ElseIf e.Button = MouseButtons.Right Then
             'Flag Cell
         End If
@@ -91,4 +88,7 @@ Public Class Minefield
         Next
     End Sub
 
+    Private Sub topLayout_Paint(sender As Object, e As PaintEventArgs) Handles topLayout.Paint
+
+    End Sub
 End Class

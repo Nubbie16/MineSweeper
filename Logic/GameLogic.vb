@@ -10,29 +10,23 @@
 
 Module GameLogic
 
+    Public Sub RevealTile(board As Gameboard, x As Integer, y As Integer)
 
-    'Easy = 10 mines
-    'Medium = 14 mines
-    'Hard = 18 mines
-    'Insane = 24 mines
+        If board.IsInsideBoard(x, y) Then
+            If board.placedMines(x, y) Then
+                'Mine hit, game over
+                GameLostSequence(board, x, y)
 
-    Public Function DetermineMineCount(difficulty As String) As Integer
 
-        Dim mineCount As Integer
+            End If
+        End If
 
-        Select Case difficulty
-            Case "Easy"
-                mineCount = 10
-            Case "Medium"
-                mineCount = 14
-            Case "Hard"
-                mineCount = 18
-            Case "Insane"
-                mineCount = 24
-        End Select
+    End Sub
 
-        Return mineCount
-    End Function
+
+
+
+
 
 
 

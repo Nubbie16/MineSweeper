@@ -26,6 +26,7 @@ Partial Class Minefield
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Minefield))
         formLayout = New TableLayoutPanel()
         topLayout = New TableLayoutPanel()
+        remainingMinesLbl = New Label()
         playerLbl = New Label()
         avatarPic = New PictureBox()
         timerLbl = New Label()
@@ -35,7 +36,6 @@ Partial Class Minefield
         restartBtn = New Button()
         quitBtn = New Button()
         scoreTimer = New Timer(components)
-        remainingMinesLbl = New Label()
         formLayout.SuspendLayout()
         topLayout.SuspendLayout()
         CType(avatarPic, ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +79,17 @@ Partial Class Minefield
         topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
         topLayout.Size = New Size(430, 90)
         topLayout.TabIndex = 4
+        ' 
+        ' remainingMinesLbl
+        ' 
+        remainingMinesLbl.Dock = DockStyle.Fill
+        remainingMinesLbl.Font = New Font("Gill Sans Ultra Bold", 9F, FontStyle.Italic)
+        remainingMinesLbl.Location = New Point(3, 67)
+        remainingMinesLbl.Name = "remainingMinesLbl"
+        remainingMinesLbl.Size = New Size(123, 23)
+        remainingMinesLbl.TabIndex = 5
+        remainingMinesLbl.Text = "Mines Left :  [#]"
+        remainingMinesLbl.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' playerLbl
         ' 
@@ -178,17 +189,6 @@ Partial Class Minefield
         ' scoreTimer
         ' 
         scoreTimer.Interval = 1000
-        ' 
-        ' remainingMinesLbl
-        ' 
-        remainingMinesLbl.Dock = DockStyle.Fill
-        remainingMinesLbl.Font = New Font("Gill Sans Ultra Bold", 9F, FontStyle.Italic)
-        remainingMinesLbl.Location = New Point(3, 67)
-        remainingMinesLbl.Name = "remainingMinesLbl"
-        remainingMinesLbl.Size = New Size(123, 23)
-        remainingMinesLbl.TabIndex = 5
-        remainingMinesLbl.Text = "Mines Left :  [#]"
-        remainingMinesLbl.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Minefield
         ' 

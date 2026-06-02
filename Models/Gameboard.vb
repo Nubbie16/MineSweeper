@@ -42,4 +42,28 @@ Public Class Gameboard
         Return x >= 0 AndAlso x < horizontalSize AndAlso y >= 0 AndAlso y < verticalSize
     End Function
 
+
+    'Easy = 10 mines
+    'Medium = 14 mines
+    'Hard = 18 mines
+    'Insane = 24 mines
+
+    Public Function DetermineMineCount(difficulty As String) As Integer
+
+        Dim mineCount As Integer
+
+        Select Case difficulty
+            Case "Easy"
+                mineCount = 10
+            Case "Medium"
+                mineCount = 14
+            Case "Hard"
+                mineCount = 18
+            Case "Insane"
+                mineCount = 24
+        End Select
+
+        Return mineCount
+    End Function
+
 End Class

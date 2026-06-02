@@ -8,12 +8,7 @@
 
 Module MinefieldHelper
 
-    ''Fixed seed for testing and debugging. DELETE/COMMENT OUT on live
-    Private seed As Integer = 12345
-    Private RNG As New Random(seed)
-
-    ''Live code for RNG
-    'Private RNG As New Random()
+    Private RNG As New Random()
 
     Public Sub GenerateGrid(board As Gameboard, boardPanel As Control, mouseHandler As MouseEventHandler)
 
@@ -139,4 +134,11 @@ Module MinefieldHelper
 
     End Function
 
+    Public Sub GameLostSequence(board As Gameboard, x As Integer, y As Integer)
+        ShowRevealedMinefield(board, board.cellGrid(0, 0).Parent)     'Reveals the minefield with all mines and proximity numbers shown
+        board.revealedGrid(x, y).BackgroundImage = My.Resources.Detonated32
+        Dim minefieldForm As Minefield = Minefield.ActiveForm
+        minefieldForm.avatarPic.Image = board.player.deadAvatar
+        MessageBox.Show("You hit a mine! Game Over.", "Mine Sweeper")
+    End Sub
 End Module

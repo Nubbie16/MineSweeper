@@ -15,6 +15,14 @@ Public Class AvatarSelection
     Public difficulty As String
     Public player As New Player()
 
+    Public aliveAvatars As New List(Of Image) From {
+        My.Resources.MBlAva88, My.Resources.MRedAva88, My.Resources.MBrAva88,
+        My.Resources.FBlAva88, My.Resources.FRedAva88, My.Resources.FBrAva88}
+
+    Public deadAvatars As New List(Of Image) From {
+        My.Resources.MBlDead88, My.Resources.MRedDead88, My.Resources.MBrDead88,
+        My.Resources.FBlDead88, My.Resources.FRedDead88, My.Resources.FBrDead88}
+
     Public Sub New(selectedDifficulty As String)
         ' This call is required by the designer.
         InitializeComponent()
@@ -27,9 +35,25 @@ Public Class AvatarSelection
         Dim selectedAvatar As RadioButton = bodyLayout.Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked)
 
         player.name = playerText.Text
-        player.avatar = selectedAvatar.Image
         player.difficulty = difficulty
         player.completionTime = TimeSpan.Zero
+        player.avatar = selectedAvatar.Image
+
+        Select Case selectedAvatar.Name
+            Case "maleBlondeRad"
+                player.deadAvatar = My.Resources.MBlDead88
+            Case "maleRedRad"
+                player.deadAvatar = My.Resources.MRedDead88
+            Case "maleBrownRad"
+                player.deadAvatar = My.Resources.MBrDead88
+            Case "femaleBlondeRad"
+                player.deadAvatar = My.Resources.FBlDead88
+            Case "femaleRedRad"
+                player.deadAvatar = My.Resources.FRedDead88
+            Case "femaleBrownRad"
+                player.deadAvatar = My.Resources.FBrDead88
+        End Select
+
 
         Dim minefield As New Minefield(player)
         minefield.Show()

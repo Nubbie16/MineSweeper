@@ -13,5 +13,6 @@ Public Class Player
     Public Property difficulty As String
     Public Property completionTime As TimeSpan
     Public Property avatar As Image
+    Public Property deadAvatar As Image
 
 End Class
