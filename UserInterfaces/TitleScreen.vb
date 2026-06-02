@@ -1,6 +1,6 @@
 ﻿'Project Name: MineSweeper
 'Purpose: MineSweeper game that stores high scores(fastest completion)
-'File Name: MainForm.vb
+'File Name: TitleScreen.vb
 'Description: This is the main form for the MineSweeper game. It will display
 '             the start button to begin a game and high scores based on completion time.
 'Programmer: Cody Eckard

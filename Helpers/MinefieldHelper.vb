@@ -30,7 +30,7 @@ Module MinefieldHelper
         boardPanel.Controls.Clear()
         ReDim board.cellGrid(cols - 1, rows - 1)
 
-        For ccol As Integer = 0 To cols - 1
+        For col As Integer = 0 To cols - 1
             For row As Integer = 0 To rows - 1
 
                 Dim btn As New Button()
@@ -38,23 +38,22 @@ Module MinefieldHelper
                 btn.Width = cellSize
                 btn.Height = cellSize
                 btn.Left = startX + (row * cellSize)
-                btn.Top = startY + (ccol * cellSize)
+                btn.Top = startY + (col * cellSize)
                 btn.Margin = New Padding(0)
-                btn.Tag = New Point(ccol, row)
+                btn.Tag = New Point(col, row)
 
                 btn.FlatStyle = FlatStyle.Flat
                 btn.BackgroundImageLayout = ImageLayout.Zoom
 
                 AddHandler btn.MouseUp, mouseHandler
 
-                board.cellGrid(ccol, row) = btn
+                board.cellGrid(col, row) = btn
                 boardPanel.Controls.Add(btn)
             Next
         Next
     End Sub
 
-    Public Sub GenerateMinePlacement(board As Gameboard, boardPanel As Control)
-
+    Public Sub ShowRevealedMinefield(board As Gameboard, boardPanel As Control)
         Dim cols As Integer = board.horizontalSize
         Dim rows As Integer = board.verticalSize
         Dim cellSize As Integer = 34
@@ -66,66 +65,29 @@ Module MinefieldHelper
         Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
 
         boardPanel.Controls.Clear()
-        ReDim board.cellGrid(cols - 1, rows - 1)
+        ReDim board.revealedGrid(cols - 1, rows - 1)
 
-        For ccol As Integer = 0 To cols - 1
+        For col As Integer = 0 To cols - 1
             For row As Integer = 0 To rows - 1
                 Dim btn As New Button()
 
                 btn.Width = cellSize
                 btn.Height = cellSize
                 btn.Left = startX + (row * cellSize)
-                btn.Top = startY + (ccol * cellSize)
+                btn.Top = startY + (col * cellSize)
                 btn.Margin = New Padding(0)
-                btn.Tag = New Point(ccol, row)
+                btn.Tag = New Point(col, row)
 
                 btn.FlatStyle = FlatStyle.Flat
                 btn.BackgroundImageLayout = ImageLayout.Zoom
 
-                If board.placedMines(ccol, row) Then
-                    ''   btn.BackgroundImage = My.Resources.Mine
+                If board.placedMines(col, row) Then
+                    btn.BackgroundImage = My.Resources.Mine32
+                ElseIf board.placedProximityNums(col, row) > 0 Then
+                    btn.Text = board.placedProximityNums(col, row).ToString()
                 End If
 
-                board.cellGrid(ccol, row) = btn
-                boardPanel.Controls.Add(btn)
-            Next
-        Next
-
-    End Sub
-
-    Public Sub GenerateProximityPlacement(board As Gameboard, boardPanel As Control)
-        Dim cols As Integer = board.horizontalSize
-        Dim rows As Integer = board.verticalSize
-        Dim cellSize As Integer = 34
-
-        Dim boardWidth As Integer = rows * cellSize
-        Dim boardHeight As Integer = cols * cellSize
-
-        Dim startX As Integer = (boardPanel.Width - boardWidth) \ 2
-        Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
-
-        boardPanel.Controls.Clear()
-        ReDim board.cellGrid(cols - 1, rows - 1)
-
-        For ccol As Integer = 0 To cols - 1
-            For row As Integer = 0 To rows - 1
-                Dim btn As New Button()
-
-                btn.Width = cellSize
-                btn.Height = cellSize
-                btn.Left = startX + (row * cellSize)
-                btn.Top = startY + (ccol * cellSize)
-                btn.Margin = New Padding(0)
-                btn.Tag = New Point(ccol, row)
-
-                btn.FlatStyle = FlatStyle.Flat
-                btn.BackgroundImageLayout = ImageLayout.Zoom
-
-                If board.placedProximityNums(ccol, row) > 0 Then
-                    btn.Text = board.placedProximityNums(ccol, row).ToString()
-                End If
-
-                board.cellGrid(ccol, row) = btn
+                board.revealedGrid(col, row) = btn
                 boardPanel.Controls.Add(btn)
             Next
         Next

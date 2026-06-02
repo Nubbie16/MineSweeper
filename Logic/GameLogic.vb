@@ -34,22 +34,6 @@ Module GameLogic
         Return mineCount
     End Function
 
-    Public Sub DetermineFieldNumbers(board As Gameboard)
 
-        ReDim board.placedProximityNums(board.horizontalSize - 1, board.verticalSize - 1)
-
-        For x As Integer = 0 To board.horizontalSize - 1
-            For y As Integer = 0 To board.verticalSize - 1
-
-                Dim proximityCount As Integer = 0
-
-                If board.placedMines(x, y) = False Then
-
-                    proximityCount = ProximityHelper(board, x, y)
-                    board.placedProximityNums(x, y) = proximityCount
-                End If
-            Next
-        Next
-    End Sub
 
 End Module

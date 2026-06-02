@@ -35,6 +35,7 @@ Partial Class Minefield
         restartBtn = New Button()
         quitBtn = New Button()
         scoreTimer = New Timer(components)
+        remainingMinesLbl = New Label()
         formLayout.SuspendLayout()
         topLayout.SuspendLayout()
         CType(avatarPic, ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +65,7 @@ Partial Class Minefield
         topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
         topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40F))
         topLayout.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
+        topLayout.Controls.Add(remainingMinesLbl, 0, 2)
         topLayout.Controls.Add(playerLbl, 1, 0)
         topLayout.Controls.Add(avatarPic, 2, 0)
         topLayout.Controls.Add(timerLbl, 0, 1)
@@ -71,9 +73,10 @@ Partial Class Minefield
         topLayout.Dock = DockStyle.Top
         topLayout.Location = New Point(3, 3)
         topLayout.Name = "topLayout"
-        topLayout.RowCount = 2
-        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 40F))
-        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 60F))
+        topLayout.RowCount = 3
+        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
+        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        topLayout.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
         topLayout.Size = New Size(430, 90)
         topLayout.TabIndex = 4
         ' 
@@ -83,7 +86,7 @@ Partial Class Minefield
         playerLbl.Font = New Font("Gill Sans Ultra Bold", 19F, FontStyle.Italic)
         playerLbl.Location = New Point(132, 0)
         playerLbl.Name = "playerLbl"
-        topLayout.SetRowSpan(playerLbl, 2)
+        topLayout.SetRowSpan(playerLbl, 3)
         playerLbl.Size = New Size(166, 90)
         playerLbl.TabIndex = 0
         playerLbl.Text = "Name Avatar>>"
@@ -95,7 +98,7 @@ Partial Class Minefield
         avatarPic.Dock = DockStyle.Fill
         avatarPic.Location = New Point(304, 3)
         avatarPic.Name = "avatarPic"
-        topLayout.SetRowSpan(avatarPic, 2)
+        topLayout.SetRowSpan(avatarPic, 3)
         avatarPic.Size = New Size(123, 84)
         avatarPic.SizeMode = PictureBoxSizeMode.Zoom
         avatarPic.TabIndex = 2
@@ -105,9 +108,9 @@ Partial Class Minefield
         ' 
         timerLbl.Dock = DockStyle.Fill
         timerLbl.Font = New Font("Gill Sans Ultra Bold", 9F, FontStyle.Italic)
-        timerLbl.Location = New Point(3, 36)
+        timerLbl.Location = New Point(3, 22)
         timerLbl.Name = "timerLbl"
-        timerLbl.Size = New Size(123, 54)
+        timerLbl.Size = New Size(123, 45)
         timerLbl.TabIndex = 3
         timerLbl.Text = "00:00.00"
         timerLbl.TextAlign = ContentAlignment.MiddleCenter
@@ -118,7 +121,7 @@ Partial Class Minefield
         selectedDiffLbl.Font = New Font("Gill Sans Ultra Bold", 9F, FontStyle.Italic)
         selectedDiffLbl.Location = New Point(3, 0)
         selectedDiffLbl.Name = "selectedDiffLbl"
-        selectedDiffLbl.Size = New Size(123, 36)
+        selectedDiffLbl.Size = New Size(123, 22)
         selectedDiffLbl.TabIndex = 4
         selectedDiffLbl.Text = "[Diff Select]"
         selectedDiffLbl.TextAlign = ContentAlignment.MiddleCenter
@@ -176,6 +179,17 @@ Partial Class Minefield
         ' 
         scoreTimer.Interval = 1000
         ' 
+        ' remainingMinesLbl
+        ' 
+        remainingMinesLbl.Dock = DockStyle.Fill
+        remainingMinesLbl.Font = New Font("Gill Sans Ultra Bold", 9F, FontStyle.Italic)
+        remainingMinesLbl.Location = New Point(3, 67)
+        remainingMinesLbl.Name = "remainingMinesLbl"
+        remainingMinesLbl.Size = New Size(123, 23)
+        remainingMinesLbl.TabIndex = 5
+        remainingMinesLbl.Text = "Mines Left :  [#]"
+        remainingMinesLbl.TextAlign = ContentAlignment.MiddleCenter
+        ' 
         ' Minefield
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -207,4 +221,5 @@ Partial Class Minefield
     Friend WithEvents bottomLayout As TableLayoutPanel
     Friend WithEvents selectedDiffLbl As Label
     Friend WithEvents scoreTimer As Timer
+    Friend WithEvents remainingMinesLbl As Label
 End Class

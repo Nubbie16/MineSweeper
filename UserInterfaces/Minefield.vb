@@ -34,7 +34,7 @@ Public Class Minefield
 
         DetermineFieldNumbers(gameboard)                          'Stores proximity numbers in gameboard
 
-        GenerateRevealedMinefield(gameboard, gameboardPanel)              ' Creates revealed minefield with mines and proximity numbers
+        ShowRevealedMinefield(gameboard, gameboardPanel)              ' Creates revealed minefield with mines and proximity numbers
 
     End Sub
 
@@ -62,7 +62,7 @@ Public Class Minefield
         Dim btn As Button = CType(sender, Button)
         Dim location As Point = CType(btn.Tag, Point)
 
-        Dim ccol As Integer = location.X
+        Dim col As Integer = location.X
         Dim row As Integer = location.Y
 
         If e.Button = MouseButtons.Left Then
@@ -73,14 +73,22 @@ Public Class Minefield
 
     End Sub
 
-    Public Sub GenerateRevealedMinefield(board As Gameboard, boardPanel As Control)
+    Public Sub DetermineFieldNumbers(board As Gameboard)
 
-        GenerateMinePlacement(board, boardPanel)
-        GenerateProximityPlacement(board, boardPanel)
+        ReDim board.placedProximityNums(board.horizontalSize - 1, board.verticalSize - 1)
 
+        For x As Integer = 0 To board.horizontalSize - 1
+            For y As Integer = 0 To board.verticalSize - 1
 
+                Dim proximityCount As Integer = 0
 
+                If board.placedMines(x, y) = False Then
 
+                    proximityCount = ProximityHelper(board, x, y)
+                    board.placedProximityNums(x, y) = proximityCount
+                End If
+            Next
+        Next
     End Sub
 
 End Class
