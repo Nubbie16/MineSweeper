@@ -30,6 +30,8 @@ Public Class Gameboard
     'grid that will be revealed when a cell is clicked. It will show the proximity numbers and mines.
     Public Property revealedGrid As Button(,)
 
+    Public Property revealedCells As Boolean(,)
+
     'Will be used to store the integer values for the proximity numbers. This will be
     'used to determine what number to display on the revealed grid when a cell is clicked.
     Public Property placedProximityNums As Integer(,)

@@ -8,7 +8,10 @@
 
 Module MinefieldHelper
 
-    Private RNG As New Random()
+    Private RNG As New Random(12345)
+
+    Private xOffsets() As Integer = {-1, 0, 1, -1, 1, -1, 0, 1}
+    Private yOffsets() As Integer = {-1, -1, -1, 0, 0, 1, 1, 1}
 
     Public Sub GenerateGrid(board As Gameboard, boardPanel As Control, mouseHandler As MouseEventHandler)
 
@@ -109,19 +112,26 @@ Module MinefieldHelper
 
     End Sub
 
+    Public Sub ClearEmptySurroundingTiles(board As Gameboard, currentX As Integer, currentY As Integer)
+
+        For subset As Integer = 0 To xOffsets.Length - 1
+            Dim checkX = currentX + xOffsets(subset)
+            Dim checkY = currentY + yOffsets(subset)
+
+        Next
+
+    End Sub
+
+
     'Looks at all surrounding cells for mines and tracks the number
     Public Function ProximityHelper(board As Gameboard, currentX As Integer, currentY As Integer) As Integer
 
         Dim proxCount As Integer = 0
 
-        Dim xOffsets() As Integer = {-1, 0, 1, -1, 1, -1, 0, 1}
-        Dim yOffsets() As Integer = {-1, -1, -1, 0, 0, 1, 1, 1}
-        Dim checkX As Integer = Nothing
-        Dim checkY As Integer = Nothing
-
         For subset As Integer = 0 To xOffsets.Length - 1
-            checkX = currentX + xOffsets(subset)
-            checkY = currentY + yOffsets(subset)
+
+            Dim checkX = currentX + xOffsets(subset)
+            Dim checkY = currentY + yOffsets(subset)
 
             If board.IsInsideBoard(checkX, checkY) Then
                 If board.placedMines(checkX, checkY) Then
@@ -141,4 +151,47 @@ Module MinefieldHelper
         minefieldForm.avatarPic.Image = board.player.deadAvatar
         MessageBox.Show("You hit a mine! Game Over.", "Mine Sweeper")
     End Sub
+
+    Public Sub RevealProximityFlag(board As Gameboard, x As Integer, y As Integer)
+        board.cellGrid(x, y).Text = board.placedProximityNums(x, y).ToString()
+    End Sub
+
+    Public Sub RevealEmptyTile(board As Gameboard, x As Integer, y As Integer)
+
+        ReDim board.revealedCells(board.horizontalSize - 1, board.verticalSize - 1)
+
+        If board.IsInsideBoard(x, y) = False Then
+            Exit Sub
+        End If
+
+        'If board.placedMines(x, y) Then
+        '    Exit Sub
+        'End If
+
+        'If board.revealedCells(x, y) Then
+        '    Exit Sub
+        'End If
+
+        board.revealedCells(x, y) = True
+
+        If board.placedProximityNums(x, y) > 0 Then
+            RevealProximityFlag(board, x, y)
+            Exit Sub
+        End If
+
+        For subset As Integer = 0 To xOffsets.Length - 1
+            If board.IsInsideBoard(x, y) = False Then
+                Exit Sub
+            Else
+                Dim checkX As Integer = x + xOffsets(subset)
+                Dim checkY As Integer = y + yOffsets(subset)
+
+                RevealEmptyTile(board, checkX, checkY)
+            End If
+        Next
+
+
+    End Sub
+
+
 End Module

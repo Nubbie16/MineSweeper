@@ -88,7 +88,4 @@ Public Class Minefield
         Next
     End Sub
 
-    Private Sub topLayout_Paint(sender As Object, e As PaintEventArgs) Handles topLayout.Paint
-
-    End Sub
 End Class
