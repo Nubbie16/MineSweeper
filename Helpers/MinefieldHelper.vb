@@ -90,6 +90,9 @@ Module MinefieldHelper
                 End If
 
                 board.revealedGrid(col, row) = btn
+
+                FormatProximityFlag(board.revealedGrid, col, row)
+
                 boardPanel.Controls.Add(btn)
             Next
         Next
@@ -158,7 +161,37 @@ Module MinefieldHelper
 
     Public Sub RevealProximityFlag(board As Gameboard, x As Integer, y As Integer)
         board.cellGrid(x, y).Text = board.placedProximityNums(x, y).ToString()
+        FormatProximityFlag(board.cellGrid, x, y)
     End Sub
+
+    Public Sub FormatProximityFlag(grid As Button(,), x As Integer, y As Integer)
+
+
+
+        grid(x, y).Font = New Font("Gill Sans Ultra Bold", 9, FontStyle.Italic)
+        Select Case grid(x, y).Text
+
+            Case "1"
+                grid(x, y).ForeColor = Color.Blue
+            Case "2"
+                grid(x, y).ForeColor = Color.Green
+            Case "3"
+                grid(x, y).ForeColor = Color.Red
+            Case "4"
+                grid(x, y).ForeColor = Color.DarkBlue
+            Case "5"
+                grid(x, y).ForeColor = Color.Maroon
+            Case "6"
+                grid(x, y).ForeColor = Color.Turquoise
+            Case "7"
+                grid(x, y).ForeColor = Color.Teal
+            Case "8"
+                grid(x, y).ForeColor = Color.Firebrick
+        End Select
+
+
+    End Sub
+
 
     Public Sub RevealEmptyTile(board As Gameboard, x As Integer, y As Integer)
 
@@ -176,6 +209,10 @@ Module MinefieldHelper
 
         board.revealedCells(x, y) = True
 
+        If board.placedProximityNums(x, y) = 0 Then
+            ColorEmptyCells(board, x, y)
+        End If
+
         If board.placedProximityNums(x, y) > 0 Then
             RevealProximityFlag(board, x, y)
             Exit Sub
@@ -190,6 +227,11 @@ Module MinefieldHelper
         Next
 
 
+    End Sub
+
+
+    Public Sub ColorEmptyCells(board As Gameboard, x As Integer, y As Integer)
+        board.cellGrid(x, y).BackColor = Color.DarkGray
     End Sub
 
 
