@@ -25,7 +25,8 @@ Public Class Minefield
         avatarPic.Image = Gameboard.player.avatar
 
         gameboard.mineCount = gameboard.DetermineMineCount(gameboard.player.difficulty)
-        remainingMinesLbl.Text = "Mines Left: " & gameboard.mineCount.ToString()
+        gameboard.remainingMines = gameboard.mineCount
+        remainingMinesLbl.Text = "Mines Left: " & gameboard.remainingMines.ToString()
 
         InitializeMinefield()
 
@@ -64,11 +65,42 @@ Public Class Minefield
         Dim row As Integer = location.Y
 
         If e.Button = MouseButtons.Left Then
+            If gameboard.revealedCells(col, row) Then
+                Exit Sub
+            End If
             RevealTile(gameboard, col, row)
         ElseIf e.Button = MouseButtons.Right Then
-            PlaceFlag(gameboard, col, row)
+            If gameboard.revealedCells(col, row) Then
+                Exit Sub
+            End If
+            If gameboard.flaggedGrid(col, row) = False AndAlso gameboard.cellGrid(col, row).BackgroundImage Is Nothing Then
+                PlaceFlag(gameboard, col, row)
+            ElseIf gameboard.flaggedGrid(col, row) = True Then
+                PlaceMaybeFlag(gameboard, col, row)
+            Else
+                gameboard.cellGrid(col, row).BackgroundImage = Nothing
+            End If
         End If
 
+    End Sub
+
+    Public Sub PlaceFlag(board As Gameboard, x As Integer, y As Integer)
+        If board.IsInsideBoard(x, y) Then
+            board.flaggedGrid(x, y) = True
+            board.cellGrid(x, y).BackgroundImage = My.Resources.Flag32
+            board.remainingMines -= 1
+            UpdateRemainingMinesLabel(board.remainingMines, remainingMinesLbl)
+        End If
+
+    End Sub
+
+    Public Sub PlaceMaybeFlag(board As Gameboard, x As Integer, y As Integer)
+        If board.IsInsideBoard(x, y) Then
+            board.cellGrid(x, y).BackgroundImage = My.Resources.Maybe32
+            board.flaggedGrid(x, y) = False
+            board.remainingMines += 1
+            UpdateRemainingMinesLabel(board.remainingMines, remainingMinesLbl)
+        End If
     End Sub
 
     Public Sub DetermineFieldNumbers(board As Gameboard)
@@ -89,9 +121,21 @@ Public Class Minefield
         Next
     End Sub
 
-    Private Sub Minefield_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
-        If e.Button = MouseButtons.Right Then
-            remainingMinesLbl.Text = "Mines Left: " & gameboard.remainingMines.ToString()
+    Public Sub RevealTile(board As Gameboard, x As Integer, y As Integer)
+
+        Dim hor As Integer = board.horizontalSize - 1
+        Dim vert As Integer = board.verticalSize - 1
+
+        If board.IsInsideBoard(x, y) Then
+            If board.placedMines(x, y) Then
+                'Mine hit, game over
+                GameLostSequence(board, Me, x, y)
+                End
+            ElseIf board.placedProximityNums(x, y) > 0 Then
+                RevealProximityFlag(board, Me, x, y)
+            Else
+                RevealEmptyTile(board, Me, x, y)
+            End If
         End If
 
     End Sub

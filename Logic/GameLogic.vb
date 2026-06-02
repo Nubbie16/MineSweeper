@@ -10,33 +10,8 @@
 
 Module GameLogic
 
-    Public Sub RevealTile(board As Gameboard, x As Integer, y As Integer)
-
-        Dim hor As Integer = board.horizontalSize - 1
-        Dim vert As Integer = board.verticalSize - 1
-
-        If board.IsInsideBoard(x, y) Then
-            If board.placedMines(x, y) Then
-                'Mine hit, game over
-                GameLostSequence(board, x, y)
-                End
-            ElseIf board.placedProximityNums(x, y) > 0 Then
-                RevealProximityFlag(board, x, y)
-            Else
-                RevealEmptyTile(board, x, y)
-            End If
-        End If
-
-    End Sub
 
 
-    Public Sub PlaceFlag(board As Gameboard, x As Integer, y As Integer)
-        If board.IsInsideBoard(x, y) Then
-            board.flaggedGrid(x, y) = True
-            board.cellGrid(x, y).BackgroundImage = My.Resources.Flag32
-            board.remainingMines -= 1
 
-        End If
 
-    End Sub
 End Module
