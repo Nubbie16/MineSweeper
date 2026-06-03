@@ -158,6 +158,8 @@ Module MinefieldHelper
             minefieldForm.avatarPic.Image = board.player.deadAvatar
         End If
 
+        minefieldForm.ScoreTimerStop()
+
         MessageBox.Show("You hit a mine! Game Over.", "Mine Sweeper")
 
     End Sub

@@ -188,7 +188,7 @@ Partial Class Minefield
         ' 
         ' scoreTimer
         ' 
-        scoreTimer.Interval = 1000
+        scoreTimer.Interval = 10
         ' 
         ' Minefield
         ' 

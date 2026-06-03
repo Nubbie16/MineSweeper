@@ -12,6 +12,8 @@
 Public Class Minefield
 
     Public gameboard As Gameboard
+    Public stopwatch As Stopwatch = New Stopwatch()
+    Public currentTime As TimeSpan
 
     Public Sub New(currentPlayer As Player)
 
@@ -40,9 +42,23 @@ Public Class Minefield
 
     End Sub
 
+    Public Sub ScoreTimer_Tick(sender As Object, e As EventArgs) Handles scoreTimer.Tick
+        currentTime = stopwatch.Elapsed
+        timerLbl.Text = currentTime.ToString("hh\:mm\:ss\.ff")
+    End Sub
 
-    ''Timer start when first cell changes
+    Public Sub ScoreTimerStart()
+        If currentTime = TimeSpan.Zero Then
+            stopwatch.Reset()
+            scoreTimer.Start()
+            stopwatch.Start()
+        End If
+    End Sub
 
+    Public Sub ScoreTimerStop()
+        scoreTimer.Stop()
+        stopwatch.Stop()
+    End Sub
 
     Private Sub quitBtn_Click(sender As Object, e As EventArgs) Handles quitBtn.Click
 
@@ -64,13 +80,16 @@ Public Class Minefield
         Dim col As Integer = location.X
         Dim row As Integer = location.Y
 
+
         If e.Button = MouseButtons.Left Then
-            If gameboard.revealedCells(col, row) Then
+            ScoreTimerStart()                                   'Starts the timer on the first click of the game
+            If gameboard.revealedCells(col, row) Then           ' "disables" use of revealed cells
                 Exit Sub
             End If
             RevealTile(gameboard, col, row)
         ElseIf e.Button = MouseButtons.Right Then
-            If gameboard.revealedCells(col, row) Then
+            ScoreTimerStart()                                   'Starts the timer on the first click of the game
+            If gameboard.revealedCells(col, row) Then           ' "disables" use of revealed cells
                 Exit Sub
             End If
             If gameboard.flaggedGrid(col, row) = False AndAlso gameboard.cellGrid(col, row).BackgroundImage Is Nothing Then
