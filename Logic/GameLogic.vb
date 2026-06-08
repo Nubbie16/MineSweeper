@@ -11,9 +11,8 @@
 Module GameLogic
 
     Public Sub CheckWinCondition(board As Gameboard, minefieldForm As Minefield)
-        Dim win As Boolean = False
 
-        If win = CheckAllCells(board) Then
+        If CheckAllCells(board) Then
             minefieldForm.ScoreTimerStop()
             board.player.completionTime = minefieldForm.currentTime
             MessageBox.Show("Congratulations! You cleared the minefield in " &
@@ -49,11 +48,16 @@ Module GameLogic
 
     Public Function AllNonMineCellsRevealed(board As Gameboard) As Boolean
 
+        For col As Integer = 0 To board.horizontalSize - 1
+            For row As Integer = 0 To board.verticalSize - 1
+                If Not board.placedMines(col, row) AndAlso Not board.revealedCells(col, row) Then
+                    Return False
+                End If
+            Next
+        Next
 
         Return True
 
     End Function
-
-
 
 End Module

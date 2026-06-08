@@ -19,15 +19,19 @@ Public Class Gameboard
     'Used as the open grid for the game. When a cell is revealed,
     'the button will be hidden and the revealed grid will be shown.
     Public Property cellGrid As Button(,)
+
     'Will be used to store the buttons for the revealed grid. This is the "master
     'grid that will be revealed when a cell is clicked. It will show the proximity numbers and mines.
     Public Property revealedGrid As Button(,)
 
     'Will be used to store the boolean values for the placement of mines.
     Public Property placedMines As Boolean(,)
+
     'Will be used to store the boolean values for the placement of flags.
     Public Property flaggedGrid As Boolean(,)
+
     Public Property revealedCells As Boolean(,)
+
     'Will be used to store the integer values for the proximity numbers. This will be
     'used to determine what number to display on the revealed grid when a cell is clicked.
     Public Property placedProximityNums As Integer(,)

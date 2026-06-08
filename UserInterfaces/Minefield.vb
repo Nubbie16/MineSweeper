@@ -87,6 +87,7 @@ Public Class Minefield
                 Exit Sub
             End If
             RevealTile(gameboard, col, row)
+            CheckWinCondition(gameboard, Me)
         ElseIf e.Button = MouseButtons.Right Then
             ScoreTimerStart()                                   'Starts the timer on the first click of the game
             If gameboard.revealedCells(col, row) Then           ' "disables" use of revealed cells
@@ -145,12 +146,13 @@ Public Class Minefield
 
         Dim hor As Integer = board.horizontalSize - 1
         Dim vert As Integer = board.verticalSize - 1
+        Dim win As Boolean = False
 
         If board.IsInsideBoard(x, y) Then
             If board.placedMines(x, y) Then
                 'Mine hit, game over
                 GameLostSequence(board, Me, x, y)
-                End
+                Return
             ElseIf board.placedProximityNums(x, y) > 0 Then
                 RevealProximityFlag(board, Me, x, y)
             Else

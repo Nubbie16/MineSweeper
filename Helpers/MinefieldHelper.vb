@@ -10,6 +10,8 @@ Module MinefieldHelper
 
     Private RNG As New Random(12345)
 
+    'Private RNG As New Random()
+
     Private xOffsets() As Integer = {-1, 0, 1, -1, 1, -1, 0, 1}
     Private yOffsets() As Integer = {-1, -1, -1, 0, 0, 1, 1, 1}
 
