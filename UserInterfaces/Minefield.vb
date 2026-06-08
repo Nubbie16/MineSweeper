@@ -95,8 +95,7 @@ Public Class Minefield
                 Exit Sub
             ElseIf gameboard.flaggedGrid(col, row) Then           ' "disables" use of flagged cells
                 Exit Sub
-            End If
-            If gameboard.maybeGrid(col, row) Then
+            ElseIf gameboard.maybeGrid(col, row) Then
                 Exit Sub
             End If
             RevealTile(gameboard, col, row)
@@ -112,6 +111,7 @@ Public Class Minefield
                 PlaceMaybeFlag(gameboard, col, row)
             Else
                 gameboard.cellGrid(col, row).BackgroundImage = Nothing
+                gameboard.maybeGrid(col, row) = False
             End If
 
         End If
