@@ -59,48 +59,36 @@ Module MinefieldHelper
 
     Public Sub ShowRevealedMinefield(board As Gameboard, boardPanel As Control)
 
-        Dim cols As Integer = board.horizontalSize
-        Dim rows As Integer = board.verticalSize
-        Dim cellSize As Integer = 34
+        For col As Integer = 0 To board.horizontalSize - 1
+            For row As Integer = 0 To board.verticalSize - 1
 
-        Dim boardWidth As Integer = rows * cellSize
-        Dim boardHeight As Integer = cols * cellSize
+                Dim btn As Button = board.cellGrid(col, row)
 
-        Dim startX As Integer = (boardPanel.Width - boardWidth) \ 2
-        Dim startY As Integer = (boardPanel.Height - boardHeight) \ 2
+                If btn Is Nothing Then
+                    Continue For
+                End If
 
-        boardPanel.Controls.Clear()
-        ReDim board.revealedGrid(cols - 1, rows - 1)
-
-        For col As Integer = 0 To cols - 1
-            For row As Integer = 0 To rows - 1
-
-                Dim btn As New Button()
-
-                btn.Width = cellSize
-                btn.Height = cellSize
-                btn.Left = startX + (row * cellSize)
-                btn.Top = startY + (col * cellSize)
-                btn.Margin = New Padding(0)
-                btn.Tag = New Point(col, row)
-
-                btn.FlatStyle = FlatStyle.Flat
-                btn.BackgroundImageLayout = ImageLayout.Zoom
+                btn.BackgroundImage = Nothing
+                btn.Text = ""
+                btn.Enabled = False
 
                 If board.placedMines(col, row) Then
+
                     btn.BackgroundImage = My.Resources.Mine32
+                    btn.BackgroundImageLayout = ImageLayout.Zoom
 
                 ElseIf board.placedProximityNums(col, row) > 0 Then
+
                     btn.Text = board.placedProximityNums(col, row).ToString()
+                    FormatProximityFlag(board.cellGrid, col, row)
+
+                Else
+
+                    btn.BackColor = Color.DarkGray
+
                 End If
 
-                board.revealedGrid(col, row) = btn
-
-                If board.placedProximityNums(col, row) > 0 AndAlso Not board.placedMines(col, row) Then
-                    FormatProximityFlag(board.revealedGrid, col, row)
-                End If
-
-                boardPanel.Controls.Add(btn)
+                board.revealedCells(col, row) = True
 
             Next
         Next
@@ -108,6 +96,9 @@ Module MinefieldHelper
     End Sub
 
     Public Sub PlaceMines(board As Gameboard)
+
+        Dim RNG As New Random(12345)
+        ' Dim RNG As New Random()
 
         Dim placedMineGrid(board.horizontalSize - 1, board.verticalSize - 1) As Boolean
         Dim minesPlaced As Integer = 0
@@ -154,13 +145,15 @@ Module MinefieldHelper
 
         ShowRevealedMinefield(board, board.cellGrid(0, 0).Parent)
 
-        board.revealedGrid(x, y).BackgroundImage = My.Resources.Detonated32
+        board.cellGrid(x, y).BackgroundImage = My.Resources.Detonated32
+        board.cellGrid(x, y).BackgroundImageLayout = ImageLayout.Zoom
 
         If board.player IsNot Nothing AndAlso board.player.deadAvatar IsNot Nothing Then
             minefieldForm.avatarPic.Image = board.player.deadAvatar
         End If
 
         minefieldForm.ScoreTimerStop()
+        minefieldForm.scoreTimer.Enabled = False
         minefieldForm.stopwatch.Reset()
 
         MessageBox.Show("You hit a mine! Game Over.", "Mine Sweeper")

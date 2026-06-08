@@ -22,19 +22,26 @@ Public Class Minefield
         gameboard = New Gameboard()
         gameboard.player = currentPlayer
 
-        selectedDiffLbl.Text = Gameboard.player.difficulty
-        playerLbl.Text = Gameboard.player.name
-        avatarPic.Image = Gameboard.player.avatar
+        selectedDiffLbl.Text = gameboard.player.difficulty
+        playerLbl.Text = gameboard.player.name
+        avatarPic.Image = gameboard.player.avatar
 
         gameboard.mineCount = gameboard.DetermineMineCount(gameboard.player.difficulty)
-        gameboard.remainingMines = gameboard.mineCount
-        remainingMinesLbl.Text = "Mines Left: " & gameboard.remainingMines.ToString()
 
         InitializeMinefield()
 
     End Sub
 
     Private Sub InitializeMinefield()
+
+        gameboard.InitializeGrids()
+
+        gameboard.remainingMines = gameboard.mineCount
+        remainingMinesLbl.Text = "Mines Left: " & gameboard.remainingMines.ToString()
+
+        stopwatch.Reset()
+        currentTime = TimeSpan.Zero
+        timerLbl.Text = "00:00.000"
 
         GenerateGrid(gameboard, gameboardPanel, AddressOf Cell_MouseUp)       'Creates the base grid layout
         PlaceMines(gameboard)                                     'Stores mine placement in gameboard
@@ -69,6 +76,7 @@ Public Class Minefield
 
     Private Sub restartBtn_Click(sender As Object, e As EventArgs) Handles restartBtn.Click
 
+
         InitializeMinefield()
 
     End Sub
@@ -87,7 +95,6 @@ Public Class Minefield
                 Exit Sub
             End If
             RevealTile(gameboard, col, row)
-            CheckWinCondition(gameboard, Me)
         ElseIf e.Button = MouseButtons.Right Then
             ScoreTimerStart()                                   'Starts the timer on the first click of the game
             If gameboard.revealedCells(col, row) Then           ' "disables" use of revealed cells
@@ -95,7 +102,6 @@ Public Class Minefield
             End If
             If gameboard.flaggedGrid(col, row) = False AndAlso gameboard.cellGrid(col, row).BackgroundImage Is Nothing Then
                 PlaceFlag(gameboard, col, row)
-                CheckWinCondition(gameboard, Me)
             ElseIf gameboard.flaggedGrid(col, row) = True Then
                 PlaceMaybeFlag(gameboard, col, row)
             Else
@@ -149,14 +155,18 @@ Public Class Minefield
         Dim win As Boolean = False
 
         If board.IsInsideBoard(x, y) Then
+
             If board.placedMines(x, y) Then
                 'Mine hit, game over
                 GameLostSequence(board, Me, x, y)
                 Return
+
             ElseIf board.placedProximityNums(x, y) > 0 Then
                 RevealProximityFlag(board, Me, x, y)
+                CheckWinCondition(board, Me)
             Else
                 RevealEmptyTile(board, Me, x, y)
+                CheckWinCondition(board, Me)
             End If
         End If
 

@@ -20,10 +20,6 @@ Public Class Gameboard
     'the button will be hidden and the revealed grid will be shown.
     Public Property cellGrid As Button(,)
 
-    'Will be used to store the buttons for the revealed grid. This is the "master
-    'grid that will be revealed when a cell is clicked. It will show the proximity numbers and mines.
-    Public Property revealedGrid As Button(,)
-
     'Will be used to store the boolean values for the placement of mines.
     Public Property placedMines As Boolean(,)
 
@@ -44,7 +40,6 @@ Public Class Gameboard
     Public Sub InitializeGrids()
         ReDim cellGrid(horizontalSize - 1, verticalSize - 1)
         ReDim flaggedGrid(horizontalSize - 1, verticalSize - 1)
-        ReDim revealedGrid(horizontalSize - 1, verticalSize - 1)
         ReDim revealedCells(horizontalSize - 1, verticalSize - 1)
         ReDim placedMines(horizontalSize - 1, verticalSize - 1)
         ReDim placedProximityNums(horizontalSize - 1, verticalSize - 1)

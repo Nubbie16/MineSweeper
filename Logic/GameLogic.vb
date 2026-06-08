@@ -25,9 +25,10 @@ Module GameLogic
 
         If AllMinesFlagged(board) OrElse AllNonMineCellsRevealed(board) Then
             Return True
-        Else
-            Return False
         End If
+
+        Return False
+
 
     End Function
 
