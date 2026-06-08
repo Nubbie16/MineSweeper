@@ -70,12 +70,17 @@ Module MinefieldHelper
 
                 btn.BackgroundImage = Nothing
                 btn.Text = ""
-                btn.Enabled = False
 
                 If board.placedMines(col, row) Then
 
                     btn.BackgroundImage = My.Resources.Mine32
                     btn.BackgroundImageLayout = ImageLayout.Zoom
+
+                ElseIf board.flaggedGrid(col, row) AndAlso board.placedMines(col, row) = False Then
+
+                    btn.BackgroundImage = My.Resources.XFlag32
+                    btn.BackgroundImageLayout = ImageLayout.Zoom
+
 
                 ElseIf board.placedProximityNums(col, row) > 0 Then
 
@@ -160,6 +165,57 @@ Module MinefieldHelper
 
     End Sub
 
+    Public Sub RevealEmptyTile(board As Gameboard, minefieldForm As Minefield, x As Integer, y As Integer)
+
+        If board.IsInsideBoard(x, y) = False Then
+            Exit Sub
+        End If
+
+        If board.placedMines(x, y) Then
+            Exit Sub
+        End If
+
+        If board.revealedCells(x, y) Then
+            Exit Sub
+        End If
+
+        If board.flaggedGrid(x, y) Then
+            Exit Sub
+        End If
+
+        If board.maybeGrid(x, y) Then
+            Exit Sub
+        End If
+
+        board.revealedCells(x, y) = True
+
+        If board.placedProximityNums(x, y) = 0 Then
+            FormatEmptyCells(board, x, y)
+        End If
+
+        If board.placedProximityNums(x, y) > 0 Then
+            RevealProximityFlag(board, minefieldForm, x, y)
+            Exit Sub
+        End If
+
+        For subset As Integer = 0 To xOffsets.Length - 1
+
+            Dim checkX As Integer = x + xOffsets(subset)
+            Dim checkY As Integer = y + yOffsets(subset)
+
+            RevealEmptyTile(board, minefieldForm, checkX, checkY)
+
+        Next
+
+    End Sub
+
+    Public Sub FormatEmptyCells(board As Gameboard, x As Integer, y As Integer)
+
+        board.cellGrid(x, y).BackColor = Color.DarkGray
+        board.cellGrid(x, y).Enabled = False
+
+    End Sub
+
     Public Sub RevealProximityFlag(board As Gameboard, minefieldForm As Minefield, x As Integer, y As Integer)
 
         board.cellGrid(x, y).Text = board.placedProximityNums(x, y).ToString()
@@ -206,48 +262,7 @@ Module MinefieldHelper
 
     End Sub
 
-    Public Sub RevealEmptyTile(board As Gameboard, minefieldForm As Minefield, x As Integer, y As Integer)
 
-        If board.IsInsideBoard(x, y) = False Then
-            Exit Sub
-        End If
-
-        If board.placedMines(x, y) Then
-            Exit Sub
-        End If
-
-        If board.revealedCells(x, y) Then
-            Exit Sub
-        End If
-
-        board.revealedCells(x, y) = True
-
-        If board.placedProximityNums(x, y) = 0 Then
-            FormatEmptyCells(board, x, y)
-        End If
-
-        If board.placedProximityNums(x, y) > 0 Then
-            RevealProximityFlag(board, minefieldForm, x, y)
-            Exit Sub
-        End If
-
-        For subset As Integer = 0 To xOffsets.Length - 1
-
-            Dim checkX As Integer = x + xOffsets(subset)
-            Dim checkY As Integer = y + yOffsets(subset)
-
-            RevealEmptyTile(board, minefieldForm, checkX, checkY)
-
-        Next
-
-    End Sub
-
-    Public Sub FormatEmptyCells(board As Gameboard, x As Integer, y As Integer)
-
-        board.cellGrid(x, y).BackColor = Color.DarkGray
-        board.cellGrid(x, y).Enabled = False
-
-    End Sub
 
     Public Sub UpdateRemainingMinesLabel(ByRef remainingMines As Integer, label As Label)
 

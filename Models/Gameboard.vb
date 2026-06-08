@@ -26,6 +26,9 @@ Public Class Gameboard
     'Will be used to store the boolean values for the placement of flags.
     Public Property flaggedGrid As Boolean(,)
 
+    'Will be used to store the boolean values for the placement of question marks.
+    Public Property maybeGrid As Boolean(,)
+
     Public Property revealedCells As Boolean(,)
 
     'Will be used to store the integer values for the proximity numbers. This will be
@@ -40,6 +43,7 @@ Public Class Gameboard
     Public Sub InitializeGrids()
         ReDim cellGrid(horizontalSize - 1, verticalSize - 1)
         ReDim flaggedGrid(horizontalSize - 1, verticalSize - 1)
+        ReDim maybeGrid(horizontalSize - 1, verticalSize - 1)
         ReDim revealedCells(horizontalSize - 1, verticalSize - 1)
         ReDim placedMines(horizontalSize - 1, verticalSize - 1)
         ReDim placedProximityNums(horizontalSize - 1, verticalSize - 1)

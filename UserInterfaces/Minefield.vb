@@ -93,6 +93,11 @@ Public Class Minefield
             ScoreTimerStart()                                   'Starts the timer on the first click of the game
             If gameboard.revealedCells(col, row) Then           ' "disables" use of revealed cells
                 Exit Sub
+            ElseIf gameboard.flaggedGrid(col, row) Then           ' "disables" use of flagged cells
+                Exit Sub
+            End If
+            If gameboard.maybeGrid(col, row) Then
+                Exit Sub
             End If
             RevealTile(gameboard, col, row)
         ElseIf e.Button = MouseButtons.Right Then
@@ -100,13 +105,15 @@ Public Class Minefield
             If gameboard.revealedCells(col, row) Then           ' "disables" use of revealed cells
                 Exit Sub
             End If
-            If gameboard.flaggedGrid(col, row) = False AndAlso gameboard.cellGrid(col, row).BackgroundImage Is Nothing Then
+
+            If gameboard.flaggedGrid(col, row) = False AndAlso gameboard.maybeGrid(col, row) = False Then
                 PlaceFlag(gameboard, col, row)
             ElseIf gameboard.flaggedGrid(col, row) = True Then
                 PlaceMaybeFlag(gameboard, col, row)
             Else
                 gameboard.cellGrid(col, row).BackgroundImage = Nothing
             End If
+
         End If
 
     End Sub
@@ -125,6 +132,7 @@ Public Class Minefield
         If board.IsInsideBoard(x, y) Then
             board.cellGrid(x, y).BackgroundImage = My.Resources.Maybe32
             board.flaggedGrid(x, y) = False
+            board.maybeGrid(x, y) = True
             board.remainingMines += 1
             UpdateRemainingMinesLabel(board.remainingMines, remainingMinesLbl)
         End If
