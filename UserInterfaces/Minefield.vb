@@ -94,6 +94,7 @@ Public Class Minefield
             End If
             If gameboard.flaggedGrid(col, row) = False AndAlso gameboard.cellGrid(col, row).BackgroundImage Is Nothing Then
                 PlaceFlag(gameboard, col, row)
+                CheckWinCondition(gameboard, Me)
             ElseIf gameboard.flaggedGrid(col, row) = True Then
                 PlaceMaybeFlag(gameboard, col, row)
             Else

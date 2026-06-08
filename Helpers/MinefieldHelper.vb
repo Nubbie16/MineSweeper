@@ -159,6 +159,7 @@ Module MinefieldHelper
         End If
 
         minefieldForm.ScoreTimerStop()
+        minefieldForm.stopwatch.Reset()
 
         MessageBox.Show("You hit a mine! Game Over.", "Mine Sweeper")
 
