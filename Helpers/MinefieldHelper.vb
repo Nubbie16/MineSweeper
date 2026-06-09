@@ -71,16 +71,21 @@ Module MinefieldHelper
                 btn.BackgroundImage = Nothing
                 btn.Text = ""
 
-                If board.placedMines(col, row) Then
 
-                    btn.BackgroundImage = My.Resources.Mine32
+                If board.placedMines(col, row) AndAlso board.flaggedGrid(col, row) Then
+
+                    btn.BackgroundImage = My.Resources.Flag32
                     btn.BackgroundImageLayout = ImageLayout.Zoom
+
+                ElseIf board.placedMines(col, row) Then
+
+                btn.BackgroundImage = My.Resources.Mine32
+                btn.BackgroundImageLayout = ImageLayout.Zoom
 
                 ElseIf board.flaggedGrid(col, row) AndAlso board.placedMines(col, row) = False Then
 
                     btn.BackgroundImage = My.Resources.XFlag32
                     btn.BackgroundImageLayout = ImageLayout.Zoom
-
 
                 ElseIf board.placedProximityNums(col, row) > 0 Then
 

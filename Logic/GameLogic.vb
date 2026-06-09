@@ -8,13 +8,9 @@
 'Creation Date: May 25, 2026
 'GitHub Repository: https://github.com/Nubbie16/MineSweeper
 
-Imports Windows.Win32.System
-
 Module GameLogic
 
     Public Sub CheckWinCondition(board As Gameboard, minefieldForm As Minefield)
-
-
 
         If CheckAllCells(board) Then
             minefieldForm.ScoreTimerStop()
@@ -44,7 +40,6 @@ Module GameLogic
                 Next
             Next
         End If
-
     End Sub
 
     Public Function CheckAllCells(board As Gameboard) As Boolean
@@ -54,8 +49,6 @@ Module GameLogic
         End If
 
         Return False
-
-
     End Function
 
     Public Function AllMinesFlagged(board As Gameboard) As Boolean

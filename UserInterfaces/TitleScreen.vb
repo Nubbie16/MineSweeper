@@ -15,11 +15,14 @@ Public Class TitleScreen
         ''Display scores based on difficulty selection
         DisplayHighScore()
 
+
     End Sub
 
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
+        Dim db As New SQLite()
+        db.OpenDB()
 
     End Sub
 
