@@ -15,6 +15,7 @@ Module GameLogic
         If CheckAllCells(board) Then
             minefieldForm.ScoreTimerStop()
             board.player.completionTime = minefieldForm.currentTime
+            board.player.completionMilli = board.player.TimeSpanToMilliseconds(minefieldForm.currentTime)
             For col As Integer = 0 To board.horizontalSize - 1
                 For row As Integer = 0 To board.verticalSize - 1
                     If board.revealedCells(col, row) = False AndAlso board.placedMines(col, row) = False Then
@@ -31,6 +32,7 @@ Module GameLogic
             minefieldForm.quitBtn.Image = Nothing
             MessageBox.Show("Congratulations! You cleared the minefield in " &
                  minefieldForm.currentTime.ToString("hh\:mm\:ss\.ff") & "!", "Mine Sweeper")
+            AddScore(board)                         'Add score to db
 
             For col As Integer = 0 To board.horizontalSize - 1
                 For row As Integer = 0 To board.verticalSize - 1

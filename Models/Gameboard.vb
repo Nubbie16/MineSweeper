@@ -65,13 +65,13 @@ Public Class Gameboard
         Dim mineCount As Integer
 
         Select Case difficulty
-            Case "Easy"
+            Case "easy"
                 mineCount = 10
-            Case "Medium"
+            Case "medium"
                 mineCount = 14
-            Case "Hard"
+            Case "hard"
                 mineCount = 18
-            Case "Insane"
+            Case "insane"
                 mineCount = 24
         End Select
 

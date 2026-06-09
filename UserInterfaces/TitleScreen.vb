@@ -7,22 +7,22 @@
 'Creation Date: May 25, 2026
 'GitHub Repository: https://github.com/Nubbie16/MineSweeper
 
+
 Public Class TitleScreen
 
     Dim difficulty As String
 
     Private Sub TitleScreen_Load(sender As Object, e As EventArgs) Handles Me.Load
         ''Display scores based on difficulty selection
-        DisplayHighScore()
 
+        DisplayHighScore(SQLite.ReadAllScores())
 
     End Sub
 
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
-        Dim db As New SQLite()
-        db.OpenDB()
+        SQLite.OpenDB()
 
     End Sub
 
@@ -34,7 +34,8 @@ Public Class TitleScreen
             Exit Sub
         End If
 
-        difficulty = difficultyCBO.SelectedItem.ToString()
+        difficulty = difficultyCBO.SelectedItem.ToString().ToLower()
+
 
         Dim avatarSelection As New AvatarSelection(difficulty)
         avatarSelection.Show()
@@ -42,27 +43,25 @@ Public Class TitleScreen
     End Sub
 
 
-    Public Sub DisplayHighScore()               ''Will pull from SQLite file from database. Beforehand, database scores will need to be sorted Ascending by time
-
-        Dim playerScores(9) As TimeSpan         ''Will change to Player class.
-
-        ''Test Data
-        Dim testPlayer As String = "Game Testie"
-
-        For i As Integer = 0 To playerScores.Length - 1
-            playerScores(i) = New TimeSpan(0, 0, i + 1, i + 5, i + 50)
-        Next
-
+    Public Sub DisplayHighScore(playerScores As List(Of Player))              
         easyHighLV.Items.Clear()
         mediumHighLV.Items.Clear()
         hardHighLV.Items.Clear()
         insaneHighLV.Items.Clear()
 
-        For Each score As TimeSpan In playerScores
-            AddScoreToListView(easyHighLV, testPlayer, score)
-            AddScoreToListView(mediumHighLV, testPlayer, score)
-            AddScoreToListView(hardHighLV, testPlayer, score)
-            AddScoreToListView(insaneHighLV, testPlayer, score)
+
+
+        For Each player As Player In playerScores
+            Select Case player.difficulty
+                Case "easy"
+                    AddScoreToListView(easyHighLV, player)
+                Case "medium"
+                    AddScoreToListView(mediumHighLV, player)
+                Case "hard"
+                    AddScoreToListView(hardHighLV, player)
+                Case "insane"
+                    AddScoreToListView(insaneHighLV, player)
+            End Select
         Next
     End Sub
 
