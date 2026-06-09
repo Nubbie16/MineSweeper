@@ -12,6 +12,7 @@ Public Class TitleScreen
 
     Dim difficulty As String
 
+
     Private Sub TitleScreen_Load(sender As Object, e As EventArgs) Handles Me.Load
         ''Display scores based on difficulty selection
 

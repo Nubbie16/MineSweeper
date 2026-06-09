@@ -152,6 +152,7 @@ Partial Class AvatarSelection
         playerText.Anchor = AnchorStyles.Left Or AnchorStyles.Right
         playerText.Font = New Font("Gill Sans Ultra Bold", 11.25F, FontStyle.Italic)
         playerText.Location = New Point(146, 12)
+        playerText.MaxLength = 8
         playerText.Name = "playerText"
         playerText.Size = New Size(137, 26)
         playerText.TabIndex = 1

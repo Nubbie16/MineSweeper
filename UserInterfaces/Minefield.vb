@@ -69,6 +69,7 @@ Public Class Minefield
 
     Private Sub quitBtn_Click(sender As Object, e As EventArgs) Handles quitBtn.Click
 
+        TitleScreen.DisplayHighScore(SQLite.ReadAllScores())
 
         TitleScreen.Show()
         Me.Close()

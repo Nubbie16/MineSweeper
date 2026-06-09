@@ -34,10 +34,26 @@ Public Class AvatarSelection
 
         Dim selectedAvatar As RadioButton = bodyLayout.Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked)
 
-        player.name = playerText.Text
         player.difficulty = difficulty
         player.completionTime = TimeSpan.Zero
+
+        If playerText.Text.Trim = "" Then
+
+            MessageBox.Show("Please enter a name.", "Mine Sweeper")
+            Exit Sub
+        End If
+
+        player.name = playerText.Text
+
+        If selectedAvatar Is Nothing Then
+
+            MessageBox.Show("Please select an avatar.", "Mine Sweeper")
+            Exit Sub
+        End If
+
         player.avatar = selectedAvatar.Image
+
+
 
         Select Case selectedAvatar.Name
             Case "maleBlondeRad"
