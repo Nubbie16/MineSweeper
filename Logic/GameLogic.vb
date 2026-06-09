@@ -8,15 +8,41 @@
 'Creation Date: May 25, 2026
 'GitHub Repository: https://github.com/Nubbie16/MineSweeper
 
+Imports Windows.Win32.System
+
 Module GameLogic
 
     Public Sub CheckWinCondition(board As Gameboard, minefieldForm As Minefield)
 
+
+
         If CheckAllCells(board) Then
             minefieldForm.ScoreTimerStop()
             board.player.completionTime = minefieldForm.currentTime
+            For col As Integer = 0 To board.horizontalSize - 1
+                For row As Integer = 0 To board.verticalSize - 1
+                    If board.revealedCells(col, row) = False AndAlso board.placedMines(col, row) = False Then
+                        If board.placedProximityNums(col, row) > 0 Then
+                            RevealProximityFlag(board, minefieldForm, col, row)
+                        Else
+                            RevealEmptyTile(board, minefieldForm, col, row)
+                        End If
+                    End If
+                Next
+            Next
+            minefieldForm.quitBtn.Text = "Main Menu"
+            minefieldForm.quitBtn.TextAlign = ContentAlignment.MiddleCenter
+            minefieldForm.quitBtn.Image = Nothing
             MessageBox.Show("Congratulations! You cleared the minefield in " &
                  minefieldForm.currentTime.ToString("hh\:mm\:ss\.ff") & "!", "Mine Sweeper")
+
+            For col As Integer = 0 To board.horizontalSize - 1
+                For row As Integer = 0 To board.verticalSize - 1
+                    If board.flaggedGrid(col, row) Then
+                        board.cellGrid(col, row).Enabled = False
+                    End If
+                Next
+            Next
         End If
 
     End Sub

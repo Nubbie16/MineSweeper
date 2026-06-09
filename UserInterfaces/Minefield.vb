@@ -41,7 +41,7 @@ Public Class Minefield
 
         stopwatch.Reset()
         currentTime = TimeSpan.Zero
-        timerLbl.Text = "00:00.000"
+        timerLbl.Text = "00:00:00.000"
 
         GenerateGrid(gameboard, gameboardPanel, AddressOf Cell_MouseUp)       'Creates the base grid layout
         PlaceMines(gameboard)                                     'Stores mine placement in gameboard
@@ -51,7 +51,7 @@ Public Class Minefield
 
     Public Sub ScoreTimer_Tick(sender As Object, e As EventArgs) Handles scoreTimer.Tick
         currentTime = stopwatch.Elapsed
-        timerLbl.Text = currentTime.ToString("hh\:mm\:ss\.ff")
+        timerLbl.Text = currentTime.ToString("hh\:mm\:ss\.fff")
     End Sub
 
     Public Sub ScoreTimerStart()
@@ -76,6 +76,7 @@ Public Class Minefield
 
     Private Sub restartBtn_Click(sender As Object, e As EventArgs) Handles restartBtn.Click
 
+        avatarPic.Image = gameboard.player.avatar
 
         InitializeMinefield()
 
@@ -124,6 +125,7 @@ Public Class Minefield
             board.cellGrid(x, y).BackgroundImage = My.Resources.Flag32
             board.remainingMines -= 1
             UpdateRemainingMinesLabel(board.remainingMines, remainingMinesLbl)
+            CheckWinCondition(board, Me)
         End If
 
     End Sub
@@ -160,7 +162,6 @@ Public Class Minefield
 
         Dim hor As Integer = board.horizontalSize - 1
         Dim vert As Integer = board.verticalSize - 1
-        Dim win As Boolean = False
 
         If board.IsInsideBoard(x, y) Then
 
@@ -174,7 +175,7 @@ Public Class Minefield
                 CheckWinCondition(board, Me)
             Else
                 RevealEmptyTile(board, Me, x, y)
-                CheckWinCondition(board, Me)
+                    CheckWinCondition(board, Me)
             End If
         End If
 

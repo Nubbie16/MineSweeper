@@ -8,7 +8,7 @@
 
 Module MinefieldHelper
 
-    Private RNG As New Random(12345)
+    'Private RNG As New Random(12345)
 
     'Private RNG As New Random()
 
@@ -103,7 +103,7 @@ Module MinefieldHelper
     Public Sub PlaceMines(board As Gameboard)
 
         Dim RNG As New Random(12345)
-        ' Dim RNG As New Random()
+        'Dim RNG As New Random()
 
         Dim placedMineGrid(board.horizontalSize - 1, board.verticalSize - 1) As Boolean
         Dim minesPlaced As Integer = 0
